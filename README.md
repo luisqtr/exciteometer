@@ -1,20 +1,22 @@
-# Excite-O-Meter | README / User Manual >
+# Excite-O-Meter | README / User Manual
 
 <img src="./docs/logo/ExciteOmeter_Logo.png" width="15%"> 
 
-Project Website: [http://exciteometer.eu/](http://exciteometer.eu/)
+* Project Website: [http://exciteometer.eu/](http://exciteometer.eu/)
+* Scientific Paper: *TBA*
+
 
 # Table of contents
 
-0. [Quick Reference Guide] (#quick)
+1. [Quick Reference Guide](#quick)
 1. [Overall description](#intro)
-2. [Excite-O-Meter Devices](#app1)
+1. [Excite-O-Meter Devices](#app1)
     1. [Version: Android](#app1a)
     1. [Version: Windows 10 UWP](#app1b)
-3. [Excite-O-Meter Unity Plugin](#app2)
+1. [Excite-O-Meter Unity Plugin](#app2)
     1. [UI Online Recorder](#app2a)
     1. [UI Offline Analysis](#app2b)
-4. [Scientific Disclaimer](#disclaimer)
+1. [Scientific Disclaimer](#disclaimer)
 
 ---
 
