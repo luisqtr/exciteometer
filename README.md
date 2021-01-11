@@ -22,7 +22,11 @@ The Excite-O-Meter (EoM) is a software framework that allows developers to integ
 Instructions to add exciteometer to a Unity project, and continue contributing to the EoM while working in the specific project.
 
 - The host Unity project should use git VCS.
-- From the `Assets` folder of your Unity project, add the exciteometer submodule: `git submodule add `
+- Change to the assets folder of the Unity project: `cd Assets`
+- Add the exciteometer submodule: `git submodule add https://github.com/luiseduve/exciteometer.git`
+- Reimport
+
+
 
 # Contributing
 
