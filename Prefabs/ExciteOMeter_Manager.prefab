@@ -1,5 +1,48 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1851681960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1851681961}
+  - component: {fileID: 1851681962}
+  m_Layer: 0
+  m_Name: MarkersReceiver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1851681961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851681960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1999586636791462633}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1851681962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851681960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072ab1747f34455428220d37273ef597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1402736874670845307
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,30 +225,37 @@ MonoBehaviour:
   logFolderName: LogFiles_ExciteOMeter
   loggers:
   - filename: hr.csv
-    logID: 1
+    logID: 2
     headers:
     - sessionTime
     - HR
   - filename: rri.csv
-    logID: 2
+    logID: 3
     headers:
     - sessionTime
     - RRi
   - filename: RMSSD.csv
-    logID: 5
+    logID: 6
     headers:
     - sessionTime
     - RMSSD
   - filename: SDNN.csv
-    logID: 6
+    logID: 7
     headers:
     - sessionTime
     - SDNN
   - filename: EOM.csv
-    logID: 7
+    logID: 8
     headers:
     - sessionTime
     - ExciteOMeter
+  - filename: _eventsAndMarkers.csv
+    logID: 1
+    headers:
+    - sessionTime
+    - type
+    - message
+    - details
 --- !u!114 &1402736874109273205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filename: sessionData.json
-  prettyJson: 0
+  prettyJson: 1
 --- !u!114 &1402736873488857402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +320,7 @@ Transform:
   - {fileID: 1999586637474210353}
   - {fileID: 1999586636656884435}
   - {fileID: 1402736874670845284}
+  - {fileID: 1851681961}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
