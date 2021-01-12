@@ -72,6 +72,11 @@ namespace ExciteOMeter
             LoggerController.instance.WriteLine(LogName.UNDEFINED, "ExciteOMeter >> " + text);
         }
 
+        public static void TriggerMarker(string markerMessage, MarkerLabel type = MarkerLabel.CUSTOM_MARKER)
+        {
+            ExciteOMeterOnlineUI.instance.CreateManualMarker(markerMessage, type);
+        }
+
         public void PostProcessingExciteOMeterLevel()
         {
             // All data needs to be written first on the json file before used for calculation

@@ -132,7 +132,7 @@ namespace ExciteOMeter
                 return false;
             
             // Screenshot was successful
-            EoM_Events.Send_OnStringReceived(DataType.Screenshots, ExciteOMeterManager.GetTimestamp(), screenshot_filepath);
+            EoM_Events.Send_OnStringReceived(DataType.Screenshots, ExciteOMeterManager.GetTimestamp(), screenshot_filepath, MarkerLabel.NONE);
 
             return true;
         }

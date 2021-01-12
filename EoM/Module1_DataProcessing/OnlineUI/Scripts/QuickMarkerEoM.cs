@@ -45,7 +45,7 @@ namespace ExciteOMeter
             {
                 quickMarkerButton.onClick.RemoveAllListeners();
                 // Send an EoM event when clicked the button
-                quickMarkerButton.onClick.AddListener(delegate {ExciteOMeterOnlineUI.instance.CreateManualMarker(markerMessage, MarkerLabel.QUICK_MARKER); });
+                quickMarkerButton.onClick.AddListener(delegate {ExciteOMeterManager.TriggerMarker(markerMessage, MarkerLabel.QUICK_MARKER); });
                 quickMarkerButton.onClick.AddListener(delegate {ExecuteAction();});
             }
         }

@@ -24,15 +24,7 @@
         Screenshots,
     }
 
-    // Enum used to identify automatic and manual events triggered with EoM
-    public enum InstantMarkerType
-    {
-        NONE,
-        AUTOMATIC,
-        MANUAL,     // The user can trigger this event to put a customized message.
-    }
-
-    // Enum used to identify different types of automatic or manual markers
+     // Enum used to identify different types of automatic or manual markers
     public enum MarkerLabel
     {
         NONE,
@@ -47,6 +39,7 @@
     public enum LogName
     {
         UNDEFINED,
+        EventsAndMarkers,
         VariableHeartRate,
         VariableRrInterval,
         VariableRawECG, // Available in Polar H10, but not used

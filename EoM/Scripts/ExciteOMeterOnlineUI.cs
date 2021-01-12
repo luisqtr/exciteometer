@@ -130,7 +130,7 @@ namespace ExciteOMeter
             }
         }
 
-        // NOT USE: Examples of automatic markers that should be triggered internally.
+        // NOT USED: Examples of automatic markers that should be triggered internally.
         public void SendAutomaticMarker()
         {
             EoM_Events.Send_OnStringReceived(DataType.AutomaticMarkers, ExciteOMeterManager.GetTimestamp(), "HR is abnormal", MarkerLabel.ABNORMAL_HR);
