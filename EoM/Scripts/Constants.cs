@@ -48,8 +48,10 @@
         FeatureSDNN,
         EOM,
 
-        GameMainCameraPosition, // Not used, for example for future logs
-        GamePlayerEvents,       // Not used
+        TransformHeadset,        //  Collects position + rotation from VR headset
+        TransformLeftController, 
+        TransformRightController,
+        SubjectiveMeasureWithTrigger,   // Stores subjective measurement from controller
     }
 
     public static class Constants
