@@ -80,7 +80,7 @@ namespace ExciteOMeter
         {
             if(IsLogging && filepath != "")
             {
-                unityTimeStamp = GetTimestamp(DateTime.Now);
+                unityTimeStamp = ExciteOMeterManager.GetTimestamp().ToString("F2").Replace(",",".");
 
                 file.WriteLine(unityTimeStamp + "," + line);
                 return true;

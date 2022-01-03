@@ -15,9 +15,6 @@ public class ScreenRecorder : MonoBehaviour
 	public int captureWidth = 1920;
 	public int captureHeight = 1080;
 
-	// optional game object to hide during screenshots (usually your scene canvas hud)
-	public GameObject hideGameObject;
-
 	// optimize for many screenshots will not destroy any objects so future screenshots will be fast
 	public bool optimizeForManyScreenshots = true;
 
@@ -92,9 +89,6 @@ public class ScreenRecorder : MonoBehaviour
 			return null;
 		}
 
-		// hide optional game object if set
-		if (hideGameObject != null) hideGameObject.SetActive(false);
-
 		// create screenshot objects if needed
 		if (renderTexture == null)
 		{
@@ -154,8 +148,6 @@ public class ScreenRecorder : MonoBehaviour
 			ExciteOMeterManager.DebugLog(string.Format("Wrote screenshot {0} of size {1}", filename, fileData.Length));
 		}).Start();
 
-		// unhide optional game object if set
-		if (hideGameObject != null) hideGameObject.SetActive(true);
 
 		// cleanup if needed
 		if (optimizeForManyScreenshots == false)

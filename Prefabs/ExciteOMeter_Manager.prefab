@@ -43,6 +43,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072ab1747f34455428220d37273ef597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2027043004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2027043005}
+  - component: {fileID: 2027043007}
+  m_Layer: 0
+  m_Name: MovementRecorder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2027043005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027043004}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1999586636791462633}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2027043007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027043004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6402e361c7f8d684587dbf2509e0f017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToTrack:
+  - objectToFollow: {fileID: 0}
+    logToWrite: 9
 --- !u!1 &1402736874670845307
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +302,55 @@ MonoBehaviour:
     - type
     - message
     - details
+  - filename: subjective.csv
+    logID: 12
+    headers:
+    - sessionTime
+    - leftTrigger
+    - rightTrigger
+    - totalValue
+  - filename: movHeadset.csv
+    logID: 9
+    headers:
+    - sessionTime
+    - posX
+    - posY
+    - posZ
+    - q0
+    - qi
+    - qj
+    - qk
+    - yaw
+    - pitch
+    - roll
+  - filename: movLController.csv
+    logID: 10
+    headers:
+    - sessionTime
+    - posX
+    - posY
+    - posZ
+    - q0
+    - qi
+    - qj
+    - qk
+    - yaw
+    - pitch
+    - roll
+  - filename: movRController.csv
+    logID: 11
+    headers:
+    - sessionTime
+    - posX
+    - posY
+    - posZ
+    - q0
+    - qi
+    - qj
+    - qk
+    - yaw
+    - pitch
+    - roll
 --- !u!114 &1402736874109273205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +379,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   captureWidth: 1920
   captureHeight: 1080
-  hideGameObject: {fileID: 0}
   optimizeForManyScreenshots: 1
   format: 1
 --- !u!1 &1999586636791462635
@@ -321,6 +415,7 @@ Transform:
   - {fileID: 1999586636656884435}
   - {fileID: 1402736874670845284}
   - {fileID: 1851681961}
+  - {fileID: 2027043005}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -434,11 +529,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knownStreams: []
-  forgetStreamAfter: 3
+  forgetStreamAfter: 5
   onStreamFound:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1999586636346365206}
+        m_TargetAssemblyTypeName: 
         m_MethodName: AStreamIsFound
         m_Mode: 0
         m_Arguments:
@@ -450,6 +546,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1999586637416199830}
+        m_TargetAssemblyTypeName: 
         m_MethodName: AStreamIsFound
         m_Mode: 0
         m_Arguments:
@@ -464,6 +561,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1999586636346365206}
+        m_TargetAssemblyTypeName: 
         m_MethodName: AStreamGotLost
         m_Mode: 0
         m_Arguments:
@@ -475,6 +573,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1999586637416199830}
+        m_TargetAssemblyTypeName: 
         m_MethodName: AStreamGotLost
         m_Mode: 0
         m_Arguments:
@@ -564,3 +663,6 @@ MonoBehaviour:
   useSettingsWithoutUI: 1
   usernameIF: {fileID: 0}
   periodicScreenshotsToggle: {fileID: 0}
+  periodicScreenshotSecsIF: {fileID: 0}
+  recordMovementToggle: {fileID: 0}
+  recordMovementFrequencyIF: {fileID: 0}

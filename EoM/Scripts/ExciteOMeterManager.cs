@@ -13,7 +13,8 @@ namespace ExciteOMeter
 
         public static bool showLog = false;
 
-        public static bool currentlyRecordingSession = false;
+        private static bool _currentlyRecordingSession = false;
+        public static bool currentlyRecordingSession{ get => _currentlyRecordingSession; }
 
         [Tooltip("Whether you want the Excite-O-Meter log messages to be shown in Console in play mode.")]
         public bool showLogInConsole = false;
@@ -53,7 +54,12 @@ namespace ExciteOMeter
             // Show EoM log in editor
             showLog = showLogInConsole;
         }
-        
+
+        public static void SetCurrentlyRecordingVariable(bool newState)
+        {
+            _currentlyRecordingSession = newState;
+        }
+
         // Wrapper of debug log for EoM functions
         public static void DebugLog(string text)
         {
@@ -111,6 +117,7 @@ namespace ExciteOMeter
         {
             LoggerController.instance.StopLogSession();
         }
+
 
         public void StartOfflineAnalysis()
         {

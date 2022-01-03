@@ -29,9 +29,12 @@ namespace ExciteOMeter
         private string settingsPath; // Complete path where is located the file
 
         //////// UI elements
-        [Header("DO NOT CHANGE: Setup from `ExciteOMeterOnlineUI.cs`")]
-        public TMP_InputField usernameIF;
-        public Toggle periodicScreenshotsToggle;
+        [Header("DO NOT CHANGE HERE: See `ExciteOMeterOnlineUI.cs`")]
+        [HideInInspector] public TMP_InputField usernameIF;
+        [HideInInspector] public Toggle periodicScreenshotsToggle;
+        [HideInInspector] public TMP_InputField periodicScreenshotSecsIF;
+        [HideInInspector] public Toggle recordMovementToggle;
+        [HideInInspector] public TMP_InputField recordMovementFrequencyIF;
 
         public static SettingsManager instance;
         /// <summary>
@@ -134,6 +137,21 @@ namespace ExciteOMeter
             settings.logSettings.periodicScreenshots = active;
         }
 
+        public void SetPeriodicScreenshotsPeriodSecs(float seconds)
+        {
+            settings.logSettings.screenshotsPeriodSecs = seconds;
+        }
+
+        public void SetRecordMovement(bool active)
+        {
+            settings.logSettings.recordMovementData = active;
+        }
+
+        public void SetRecordMovementFrequency(int samplesPerSec)
+        {
+            settings.logSettings.recordMovementFrequency = samplesPerSec;
+        }
+
         /* * * * * * 
         * SETUP UI ELEMENTS
         * * * * * */
@@ -147,6 +165,9 @@ namespace ExciteOMeter
             // Logger
             usernameIF.text = settings.logSettings.sessionId;
             periodicScreenshotsToggle.isOn = settings.logSettings.periodicScreenshots;
+            periodicScreenshotSecsIF.text = settings.logSettings.screenshotsPeriodSecs.ToString();
+            recordMovementToggle.isOn = settings.logSettings.recordMovementData;
+            recordMovementFrequencyIF.text = settings.logSettings.recordMovementFrequency.ToString();
         }
 
         /// <summary>
@@ -159,6 +180,9 @@ namespace ExciteOMeter
             // Data logger
             if(usernameIF != null) settings.logSettings.sessionId = usernameIF.text;
             if (periodicScreenshotsToggle != null) settings.logSettings.periodicScreenshots = periodicScreenshotsToggle.isOn;
+            if (periodicScreenshotSecsIF != null) settings.logSettings.screenshotsPeriodSecs = float.Parse(periodicScreenshotSecsIF.text);
+            if (recordMovementToggle != null) settings.logSettings.recordMovementData = recordMovementToggle.isOn;
+            if (recordMovementFrequencyIF != null) settings.logSettings.recordMovementFrequency = int.Parse(recordMovementFrequencyIF.text);
         }
     }
 

@@ -26,6 +26,9 @@ namespace ExciteOMeter
 		// Update is called once per frame
 		void Update()
 		{
+			/*
+			//// OLD INPUT SYSTEM
+
 			if (Input.GetKeyDown(KeyCode.U))
 			{
 				// Update values and whole timeline
@@ -99,7 +102,7 @@ namespace ExciteOMeter
 				ExciteOMeter.Vizualisation.Timeline.instance.AddMarkerGraph(ExciteOMeter.Vizualisation.OfflineAnalysisManager.instance.sessions[findindex], DataType.AutomaticMarkers);
 			}
 
-
+			*/
 		}
 
 

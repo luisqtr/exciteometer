@@ -20,7 +20,10 @@ public class SettingsVariables
 
         public bool captureScreenshots = true;
         public bool periodicScreenshots = true;
-        public float screenshotsPeriodSecs = 15.0f;
+        public float screenshotsPeriodSecs = 20.0f;
+
+        public bool recordMovementData = true;
+        public int recordMovementFrequency = 12;
     }
 
     [System.Serializable]

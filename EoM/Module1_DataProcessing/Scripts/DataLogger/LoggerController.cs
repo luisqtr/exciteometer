@@ -160,7 +160,7 @@ namespace ExciteOMeter
                 ExciteOMeterManager.instance.OnStartSessionLog.Invoke();
 
                 currentlyLogging = true;
-                ExciteOMeterManager.currentlyRecordingSession = true;
+                ExciteOMeterManager.SetCurrentlyRecordingVariable(true);
 
                 // START LOGGING
                 SetLoggingState(true);
@@ -180,7 +180,7 @@ namespace ExciteOMeter
             {
                 // NOTE: The final stop is given in `FinalStopLogSession`
                 // by ExciteOMeterManager when EoM level is calculated
-                // This is a type of pre-stop session
+                // This is executed between the stop session and allowing control from the user.
                 EoM_Events.Send_OnPostProcessingStarted();
             }
         }
@@ -190,7 +190,7 @@ namespace ExciteOMeter
         {
             // Logging is finished
             currentlyLogging = false;
-            ExciteOMeterManager.currentlyRecordingSession = false;
+            ExciteOMeterManager.SetCurrentlyRecordingVariable(false);
 
             // Notify everyone before closing logs.
             // Specially for feature calculation that matches length of input data before log is closed.

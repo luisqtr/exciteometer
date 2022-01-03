@@ -44,7 +44,17 @@ namespace ExciteOMeter
             if(OnDataReceived != null)
                 OnDataReceived(dataType, timestamp, value);
         }
-        
+
+        // ===================================
+        // Triggered when a lot of data is collected simultaneously.
+        public delegate void DataFloatArray(ExciteOMeter.DataType type, float timestamp, float[] value);
+        public static event DataFloatArray OnDataArrayReceived;
+        public static void Send_OnDataArrayReceived(ExciteOMeter.DataType dataType, float timestamp, float[] array)
+        {
+            if (OnDataArrayReceived != null)
+                OnDataArrayReceived(dataType, timestamp, array);
+        }
+
 
         // ===================================
         // Triggered when a user wants to set a marker at a specific point.

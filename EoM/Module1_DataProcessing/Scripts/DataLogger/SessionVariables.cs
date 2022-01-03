@@ -58,7 +58,8 @@ namespace ExciteOMeter
         public TimeSeries automaticMarkers = new TimeSeries(DataType.AutomaticMarkers);
         public TimeSeries manualMarkers = new TimeSeries(DataType.ManualMarkers);
         public TimeSeries screenshots = new TimeSeries(DataType.Screenshots);
-        
+
+
         // The main dict used in the viz
         public Dictionary<DataType, TimeSeries> timeseries = new Dictionary<DataType, TimeSeries>();
         
@@ -76,6 +77,14 @@ namespace ExciteOMeter
             timeseries.Add(DataType.AutomaticMarkers,   automaticMarkers);
             timeseries.Add(DataType.ManualMarkers,      manualMarkers);
             timeseries.Add(DataType.Screenshots,        screenshots);
+
+            // To access the texts of these TimeSeries use the property `value` because are float time series
+            // Multidimensional time series for head movement
+            foreach (DataType headset_datatype in Constants.SubsetOfTransformDataTypes(LogName.TransformHeadset))
+            {
+                timeseries.Add(headset_datatype, new TimeSeries(headset_datatype));
+            }
+            // TODO: The same than above for controllers
         }
 
         public void RemoveEmptyTimeSeries()

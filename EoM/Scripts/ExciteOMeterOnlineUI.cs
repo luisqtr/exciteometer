@@ -19,6 +19,9 @@ namespace ExciteOMeter
         [Header("Setup EoM Settings UI")]
         public TMP_InputField sessionNameIF;
         public Toggle periodicScreenshotsToggle;
+        public TMP_InputField periodicScreenshotsSecsIF;
+        public Toggle recordMovementToggle;
+        public TMP_InputField recordMovementSamplesPerSecondIF;
 
         [Header("Setup Markers UI")]
         public TMP_InputField customMarkerMessageIF;
@@ -58,6 +61,9 @@ namespace ExciteOMeter
             SettingsManager.instance.useSettingsWithoutUI = false;
             SettingsManager.instance.usernameIF = sessionNameIF;
             SettingsManager.instance.periodicScreenshotsToggle = periodicScreenshotsToggle;
+            SettingsManager.instance.periodicScreenshotSecsIF = periodicScreenshotsSecsIF;
+            SettingsManager.instance.recordMovementToggle = recordMovementToggle;
+            SettingsManager.instance.recordMovementFrequencyIF = recordMovementSamplesPerSecondIF;
 
             SettingsManager.instance.LoadSettings();
             //
@@ -87,9 +93,26 @@ namespace ExciteOMeter
             SettingsManager.instance.SetSessionId(text);
         }
 
-        public void ChangePeriodicSignals(bool status)
+        public void ChangePeriodicScreenshots(bool status)
         {
             SettingsManager.instance.SetPeriodicScreenshots(status);
+        }
+
+        public void SetPeriodicScreenshotsPeriodSecs(string periodText)
+        {
+            float period = float.Parse(periodText);
+            SettingsManager.instance.SetPeriodicScreenshotsPeriodSecs(period);
+        }
+
+        public void ChangeRecordMovement(bool status)
+        {
+            SettingsManager.instance.SetRecordMovement(status);
+        }
+
+        public void SetRecordMovementFrequency(string samplesPerSecText)
+        {
+            int samplesPerSec = int.Parse(samplesPerSecText);
+            SettingsManager.instance.SetRecordMovementFrequency(samplesPerSec);
         }
 
         ////// SIGNALS
