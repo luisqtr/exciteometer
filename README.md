@@ -2,9 +2,17 @@
 
 <img src="./docs/logo/ExciteOmeter_Logo.png" width="15%"> 
 
-* Project Website: [http://exciteometer.eu/](http://exciteometer.eu/)
-* Scientific Paper: *TBA*
-
+* Project Website: <http://exciteometer.eu/>
+* Scientific Paper: <https://doi.org/10.1109/ISMAR52148.2021.00052>\
+```
+@inproceedings{Quintero2021_EoM,
+author = {Quintero, Luis and Mu{\~{n}}oz, John E and de Mooji, Jeroen and Gaebler, Michael},
+booktitle = {IEEE International Symposium on Mixed and Augmented Reality (ISMAR)},
+doi = {10.1109/ISMAR52148.2021.00052},
+pages = {357--366},
+title = {{Excite-O-Meter: Software Framework to Integrate Heart Activity in Virtual Reality}},
+year = {2021} }
+```
 
 # Table of contents
 
