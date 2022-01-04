@@ -55,7 +55,15 @@ namespace ExciteOMeter.Vizualisation
         private static Dictionary<List<DataType>, ExciteOMeter.Vizualisation.EntryTypes> dataTypeLookup = new Dictionary<List<DataType>, Vizualisation.EntryTypes>() 
         {
             { new List<DataType>() { DataType.AutomaticMarkers, DataType.ManualMarkers }, EntryTypes.INSTANTMARKERS },
-            { new List<DataType>() { DataType.EOM,DataType.HeartRate, DataType.RawACC, DataType.RawECG, DataType.RMSSD,DataType.RMSSD, DataType.RRInterval, DataType.SDNN }, EntryTypes.LINEGRAPH },
+            { 
+                new List<DataType>() { 
+                    DataType.EOM,DataType.HeartRate, DataType.RawACC, DataType.RawECG, DataType.RMSSD,DataType.RMSSD, DataType.RRInterval, DataType.SDNN,
+                    // Head transform
+                    DataType.Headset_posX, DataType.Headset_posY, DataType.Headset_posZ, 
+                    DataType.Headset_q0, DataType.Headset_qi,DataType.Headset_qj, DataType.Headset_qk, 
+                    DataType.Headset_yaw, DataType.Headset_pitch, DataType.Headset_roll
+                }, 
+                EntryTypes.LINEGRAPH },
         };
 
         public static EntryTypes GetEntryTypeForDataType (DataType _dataType)
