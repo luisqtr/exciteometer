@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 namespace ExciteOMeter.Vizualisation
 {
@@ -10,8 +11,13 @@ namespace ExciteOMeter.Vizualisation
         private RectTransform rectTransform;
         public RectTransform myLine; // Thin line that should follow in other scrollview on top of graphs
 
+        private Mouse mouse;
+        private float mouseXpos;
+
         void Awake() {
             rectTransform = gameObject.GetComponent<RectTransform>();
+
+            mouse = Mouse.current;
         }
 
         void OnEnable() {
@@ -29,15 +35,17 @@ namespace ExciteOMeter.Vizualisation
         public void Update() {
             if (isDragging) {
 
-                if (Input.mousePosition.x == this.transform.position.x) 
+                mouseXpos = mouse.position.x.ReadValue();
+
+                if (mouseXpos == this.transform.position.x) 
                     return;
 
-                if (Input.mousePosition.x < 251)
+                if (mouseXpos < 251)
                     return; 
 
 
 
-                UpdateTransformPosition(Input.mousePosition.x);
+                UpdateTransformPosition(mouseXpos);
                 SendCurrentTimeValue ();
             }
         }
@@ -67,8 +75,9 @@ namespace ExciteOMeter.Vizualisation
 
         void UpdateTransformPosition (float _newX)
         {
-            this.transform.position = new Vector2(Input.mousePosition.x, this.transform.position.y);
-            myLine.transform.position = new Vector2(Input.mousePosition.x, myLine.transform.position.y);
+            mouseXpos = mouse.position.x.ReadValue();
+            this.transform.position = new Vector2(mouseXpos, this.transform.position.y);
+            myLine.transform.position = new Vector2(mouseXpos, myLine.transform.position.y);
         }
 
         public void OnPointerDown ()

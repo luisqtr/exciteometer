@@ -4,6 +4,7 @@
 
 ---
 
+
 ## Description
 
 **Project Website:** [http://exciteometer.eu/](http://exciteometer.eu/)
@@ -30,4 +31,11 @@ Instructions to add exciteometer to a Unity project, and continue contributing t
 
 # Contributing
 
-Fork this repository and do a PR.
+Read [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+
+## Changelog
+
+- 
+- v1.0.1
+    - Published as 

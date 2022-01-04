@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 // TODO only instantiate more objects if not in pool already > prepare a certain amount of instances on another thread at start
 // TODO Zoom out does not go back to 0 as start after custom range
@@ -72,6 +73,9 @@ namespace ExciteOMeter.Vizualisation
         private List<GameObject> backgroundDividers = new List<GameObject>();
         private List<GameObject> labels             = new List<GameObject>();
 
+        // Mouse new input system
+        private Mouse mouse;
+
         public static ExciteOMeter.Vizualisation.Timeline instance;
 
         private void Awake()
@@ -83,6 +87,9 @@ namespace ExciteOMeter.Vizualisation
                 Destroy(this.gameObject);
 
             timeLineStartHeight = rightScrollableContent.GetComponent<RectTransform>().rect.height;
+
+            // Set mouse
+            mouse = Mouse.current;
         }
 
         void OnEnable()
@@ -285,7 +292,7 @@ namespace ExciteOMeter.Vizualisation
         // When the user clicked on the TIMEBAR 
         public void OnPointerDown ()
         {
-            EoM_Events.Send_SetTimeMarkerOnX(Input.mousePosition.x);
+            EoM_Events.Send_SetTimeMarkerOnX(mouse.position.x.ReadValue()) ;
         }
 
         void SetTimelineRange (float _startTime, float _endTime)

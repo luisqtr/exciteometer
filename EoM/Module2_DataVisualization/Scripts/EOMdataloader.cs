@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using ExciteOMeter.Vizualisation;
 using System;
+using UnityEngine.InputSystem;
 
 namespace ExciteOMeter
 {
 	public class EOMdataloader : MonoBehaviour
 	{
+		private Keyboard kb;
+
 		/// <summary>
 		/// Start is called on the frame when a script is enabled just before
 		/// any of the Update methods is called the first time.
@@ -15,6 +18,7 @@ namespace ExciteOMeter
 		void Start()
 		{
 			// StartCoroutine(StartDelayed ());
+			kb = Keyboard.current;
 		}
 
 		IEnumerator StartDelayed ()
@@ -26,10 +30,9 @@ namespace ExciteOMeter
 		// Update is called once per frame
 		void Update()
 		{
-			/*
 			//// OLD INPUT SYSTEM
 
-			if (Input.GetKeyDown(KeyCode.U))
+			if (kb[Key.U].wasPressedThisFrame)
 			{
 				// Update values and whole timeline
 				Debug.Log("Updating Timeline");
@@ -38,7 +41,7 @@ namespace ExciteOMeter
 
 			}
 
-			if (Input.GetKeyDown(KeyCode.C))
+			if (kb[Key.C].wasPressedThisFrame)
 			{
 				// Update values and whole timeline
 				Debug.Log("Custom range");
@@ -48,7 +51,7 @@ namespace ExciteOMeter
 			}
 
 
-			if (Input.GetKeyDown(KeyCode.J))
+			if (kb[Key.J].wasPressedThisFrame)
 			{
 				// Update values and whole timeline
 				float value = 3f;
@@ -65,7 +68,7 @@ namespace ExciteOMeter
 
 
 
-			if (Input.GetKeyDown(KeyCode.S))
+			if (kb[Key.S].wasPressedThisFrame)
 			{
 				// Update values and whole timeline
 				Debug.Log("Set range");
@@ -74,7 +77,7 @@ namespace ExciteOMeter
 
 			}
 
-			if (Input.GetKeyDown(KeyCode.T))
+			if (kb[Key.T].wasPressedThisFrame)
 			{
 				// Update values and whole timeline
 				// float newTimestamp = UnityEngine.Random.Range(0f,200f);
@@ -85,24 +88,23 @@ namespace ExciteOMeter
 
 			}
 
-			if (Input.GetKeyDown(KeyCode.D))
+			if (kb[Key.D].wasPressedThisFrame)
 			{
 				OfflineAnalysisManager.instance.GenerateDataTypeListMenu();
 			}
 
-			if (Input.GetKeyDown(KeyCode.G))
+			if (kb[Key.G].wasPressedThisFrame)
 			{
 				int findindex = ExciteOMeter.Vizualisation.OfflineAnalysisManager.instance.sessions.FindLastIndex(x => x.isLoaded == true);
 				ExciteOMeter.Vizualisation.Timeline.instance.AddLineGraph(ExciteOMeter.Vizualisation.OfflineAnalysisManager.instance.sessions[findindex], DataType.HeartRate);
 			}
 
-			if (Input.GetKeyDown(KeyCode.A))
+			if (kb[Key.A].wasPressedThisFrame)
 			{
 				int findindex = ExciteOMeter.Vizualisation.OfflineAnalysisManager.instance.sessions.FindLastIndex(x => x.isLoaded == true);
 				ExciteOMeter.Vizualisation.Timeline.instance.AddMarkerGraph(ExciteOMeter.Vizualisation.OfflineAnalysisManager.instance.sessions[findindex], DataType.AutomaticMarkers);
 			}
 
-			*/
 		}
 
 
