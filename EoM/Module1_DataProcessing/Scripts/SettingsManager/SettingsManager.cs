@@ -134,7 +134,7 @@ namespace ExciteOMeter
 
         public void SetPeriodicScreenshots(bool active)
         {
-            settings.logSettings.periodicScreenshots = active;
+            settings.logSettings.recordScreenshots = active;
         }
 
         public void SetPeriodicScreenshotsPeriodSecs(float seconds)
@@ -164,7 +164,7 @@ namespace ExciteOMeter
 
             // Logger
             usernameIF.text = settings.logSettings.sessionId;
-            periodicScreenshotsToggle.isOn = settings.logSettings.periodicScreenshots;
+            periodicScreenshotsToggle.isOn = settings.logSettings.recordScreenshots;
             periodicScreenshotSecsIF.text = settings.logSettings.screenshotsPeriodSecs.ToString();
             recordMovementToggle.isOn = settings.logSettings.recordMovementData;
             recordMovementFrequencyIF.text = settings.logSettings.recordMovementFrequency.ToString();
@@ -179,7 +179,7 @@ namespace ExciteOMeter
 
             // Data logger
             if(usernameIF != null) settings.logSettings.sessionId = usernameIF.text;
-            if (periodicScreenshotsToggle != null) settings.logSettings.periodicScreenshots = periodicScreenshotsToggle.isOn;
+            if (periodicScreenshotsToggle != null) settings.logSettings.recordScreenshots = periodicScreenshotsToggle.isOn;
             if (periodicScreenshotSecsIF != null) settings.logSettings.screenshotsPeriodSecs = float.Parse(periodicScreenshotSecsIF.text);
             if (recordMovementToggle != null) settings.logSettings.recordMovementData = recordMovementToggle.isOn;
             if (recordMovementFrequencyIF != null) settings.logSettings.recordMovementFrequency = int.Parse(recordMovementFrequencyIF.text);

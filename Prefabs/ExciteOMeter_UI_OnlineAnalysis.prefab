@@ -869,7 +869,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8363717528442441951}
         m_TargetAssemblyTypeName: ExciteOMeter.ExciteOMeterOnlineUI, Assembly-CSharp
-        m_MethodName: ChangePeriodicScreenshots
+        m_MethodName: ChangeRecordMovement
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

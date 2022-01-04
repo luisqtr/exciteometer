@@ -18,8 +18,7 @@ public class SettingsVariables
 
         public string sessionJsonFilename = "session.json";
 
-        public bool captureScreenshots = true;
-        public bool periodicScreenshots = true;
+        public bool recordScreenshots = true;
         public float screenshotsPeriodSecs = 20.0f;
 
         public bool recordMovementData = true;

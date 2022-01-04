@@ -62,8 +62,26 @@ namespace ExciteOMeter{
                     }
                     // Add a component that sends the rotation
 
-                    MovementCapturer component = mov.objectToFollow.AddComponent<MovementCapturer>();
-                    component.Configure(sendingPeriod, mov.logToWrite);
+                    if(mov.objectToFollow.GetComponent<MovementCapturer>() == null)
+                    {
+                        MovementCapturer component = mov.objectToFollow.AddComponent<MovementCapturer>();
+                        component.Configure(sendingPeriod, mov.logToWrite);
+                    }
+                }
+            }
+            else if (isLogging && !SettingsManager.Values.logSettings.recordMovementData)
+            {
+                // Not logging anymore, delete the objects
+                foreach (MovementRecorder mov in objectsToTrack)
+                {
+                    // Remove the component that sends the rotation
+                    MovementCapturer component = mov.objectToFollow.GetComponent<MovementCapturer>();
+                    if (component != null)
+#if UNITY_EDITOR
+                        DestroyImmediate(component);
+#else
+                        Destroy(component);
+#endif
                 }
             }
         }

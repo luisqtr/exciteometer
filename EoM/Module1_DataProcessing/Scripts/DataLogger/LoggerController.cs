@@ -34,8 +34,7 @@ namespace ExciteOMeter
         public static float firstTimestamp = 0.0f;
 
         // Screenshots setup
-        private bool savingScreenshots = false;
-        private bool periodicScreenshots = false;
+        private bool recordingScreenshots = false;
         private float screenshotPeriodSecs = 20.0f;
         private float elapsedTimePeriodicScreenshots = 0.0f;
 
@@ -94,7 +93,7 @@ namespace ExciteOMeter
         public void Update()
         {
             // If the logger is running, automatic screenshots options was activated, and on top of that, the automatic screenshot checkbox was also activated.
-            if(currentlyLogging && savingScreenshots && periodicScreenshots)
+            if(currentlyLogging && recordingScreenshots)
             {
                 // Count time for new screenshot
                 elapsedTimePeriodicScreenshots += Time.deltaTime;
@@ -123,7 +122,7 @@ namespace ExciteOMeter
 
         public bool SaveScreenshot()
         {
-            if(!savingScreenshots)
+            if(!recordingScreenshots)
                 return false;
             
             string screenshot_filepath = ScreenRecorder.instance.CaptureScreenshot();
@@ -203,7 +202,7 @@ namespace ExciteOMeter
             // Create JSON
             SessionVariablesController.instance.StopCurrentSession();
 
-            if(savingScreenshots)
+            if(recordingScreenshots)
                 ScreenRecorder.instance.StopScreenRecorder();
 
             // Allow custom events from the end user
@@ -248,11 +247,10 @@ namespace ExciteOMeter
             thisLogPath = folderToSaveLogs + "/" + folder_timeStamp + "_" + SettingsManager.Values.logSettings.sessionId + "/";
             Directory.CreateDirectory(thisLogPath);
 
-            savingScreenshots = SettingsManager.Values.logSettings.captureScreenshots;
-            periodicScreenshots = SettingsManager.Values.logSettings.periodicScreenshots;
+            recordingScreenshots = SettingsManager.Values.logSettings.recordScreenshots;
             screenshotPeriodSecs = SettingsManager.Values.logSettings.screenshotsPeriodSecs;
 
-            if(savingScreenshots)
+            if(recordingScreenshots)
             {
                 Directory.CreateDirectory(thisLogPath + screenshot_folder);
                 ScreenRecorder.instance.SetupScreenRecorder(thisLogPath+screenshot_folder, Camera.main);

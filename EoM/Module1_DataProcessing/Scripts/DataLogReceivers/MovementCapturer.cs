@@ -8,7 +8,6 @@ namespace ExciteOMeter{
     {
         /// Receives strings from markers and events (like screenshots) and store it in the proper format.
 
-        public DataType variableType = DataType.NONE;
         public LogName logToWrite = LogName.UNDEFINED;
         private float sendingPeriod = 1.0f;  // 0 records all frames
 
