@@ -187,6 +187,8 @@ namespace ExciteOMeter
             Application.Quit();
         }
 
+        /// FORMAT STRINGS TO FOLLOW "," to separate columns and "." as decimal point.
+
         public static float GetTimestamp()
         {
             if(LoggerController.isFirstTimestampConfigured)
@@ -194,6 +196,27 @@ namespace ExciteOMeter
                 return Time.fixedTime - LoggerController.firstTimestamp;
             }
             return Time.fixedTime;
+        }
+
+        public static string GetTimestampString(int numDecimals=3)
+        {
+            return GetTimestamp().ToString("F"+numDecimals.ToString()).Replace(",", ".");
+        }
+
+        public static string GetFormatTimestampDateTime()
+        {
+            return "yyMMddHHmmss";
+        }
+
+        /// <summary>
+        /// Compatible string to guarantee CSV format, and not depending on Locale.
+        /// </summary>
+        /// <param name="value">number to convert</param>
+        /// <param name="numDecimals">number of decimals, 3 by default.</param>
+        /// <returns></returns>
+        public static string ConvertFloatToString(float value, int numDecimals = 3)
+        {
+            return value.ToString("F" + numDecimals.ToString()).Replace(",", ".");
         }
     }
 

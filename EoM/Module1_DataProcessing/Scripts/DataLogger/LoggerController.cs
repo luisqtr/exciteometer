@@ -244,7 +244,7 @@ namespace ExciteOMeter
 
             // Create new folder based on the time of creation of the session
             DateTime initialTimeLog = DateTime.Now;
-            string folder_timeStamp = DateTime.Now.ToString("yyyyMMdd-HHmmss"); // If changed the format, change it in the OfflineAnalyzerManager.cs
+            string folder_timeStamp = DateTime.Now.ToString(ExciteOMeterManager.GetFormatTimestampDateTime()); // If changed the format, change it in the OfflineAnalyzerManager.cs
             thisLogPath = folderToSaveLogs + "/" + folder_timeStamp + "_" + SettingsManager.Values.logSettings.sessionId + "/";
             Directory.CreateDirectory(thisLogPath);
 

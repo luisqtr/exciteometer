@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using UnityEngine.InputSystem;
 
 namespace ExciteOMeter.Vizualisation
 {
@@ -21,10 +22,12 @@ namespace ExciteOMeter.Vizualisation
         bool isActive = false;
 
         Coroutine HideTimer;
+        Mouse mouse;
 
         void Awake() 
         {
             myRect = GetComponent<RectTransform>();
+            mouse = Mouse.current;
             HideToolTip();
         }
 
@@ -113,7 +116,7 @@ namespace ExciteOMeter.Vizualisation
             if (!isActive)
                 return;
 
-            Vector2 newPos = Input.mousePosition;
+            Vector2 newPos = mouse.position.ReadValue();
             
             if ((newPos.x + bgRect.rect.width) > myCanvasRect.rect.width) 
                 newPos.x = myCanvasRect.rect.width - bgRect.rect.width;

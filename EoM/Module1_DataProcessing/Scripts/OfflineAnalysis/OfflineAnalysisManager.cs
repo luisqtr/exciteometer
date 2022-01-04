@@ -155,7 +155,7 @@ namespace ExciteOMeter.Vizualisation
                     SessionFolder newSessionFolder      = new SessionFolder();
                     newSessionFolder.sessionFilepath    = sessionFiles[0];      // Full path to json file
                     newSessionFolder.folderPath         = dir;                  // Full path to session folder
-                    newSessionFolder.datetime           = DateTime.ParseExact(dirNameParts[0], "yyyyMMdd-HHmmss", System.Globalization.CultureInfo.InvariantCulture);
+                    newSessionFolder.datetime           = DateTime.ParseExact(dirNameParts[0], ExciteOMeterManager.GetFormatTimestampDateTime(), System.Globalization.CultureInfo.InvariantCulture);
                     newSessionFolder.sessionId          = dirName.Substring(dirNameParts[0].Length + 1);
                     newSession.sessionFolder            = newSessionFolder;
 

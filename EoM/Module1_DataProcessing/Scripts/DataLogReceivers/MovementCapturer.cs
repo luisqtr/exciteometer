@@ -75,11 +75,9 @@ namespace ExciteOMeter{
                     // Create string to save in CSV
                     transformArrayText = "";
                     foreach (float v in transformArray)
-                        transformArrayText += "," + v.ToString("F4").Replace(",",".");
+                        transformArrayText += "," + v.ToString("F4").Replace(",", ".");
 
-                    logIsWriting = LoggerController.instance.WriteLine(logToWrite,
-                                                    ExciteOMeterManager.GetTimestamp().ToString("F5") +
-                                                    transformArrayText);
+                    logIsWriting = LoggerController.instance.WriteLine(logToWrite, ExciteOMeterManager.GetTimestampString() + transformArrayText);
                     if (!logIsWriting)
                         Debug.LogWarning("Error writing movement data. Please setup LoggerController with a file with LogID is" + logToWrite.ToString());
 

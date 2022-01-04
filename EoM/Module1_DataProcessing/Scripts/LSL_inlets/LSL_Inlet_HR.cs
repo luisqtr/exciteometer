@@ -27,7 +27,7 @@ namespace ExciteOMeter
             //TODO: The event only sends float[], all samples need to be parsed to float
             EoM_Events.Send_OnDataReceived(VariableType, ExciteOMeterManager.GetTimestamp(), (float)newSample[0]);
 
-            LoggerController.instance.WriteLine(LogName.VariableHeartRate, ExciteOMeterManager.GetTimestamp().ToString("F6") + "," + newSample[0].ToString("F0"));
+            LoggerController.instance.WriteLine(LogName.VariableHeartRate, ExciteOMeterManager.GetTimestampString() + "," + ExciteOMeterManager.ConvertFloatToString(newSample[0],0));
         }
     }
 }

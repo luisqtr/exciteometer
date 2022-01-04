@@ -988,7 +988,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8486691802476286089}
         m_TargetAssemblyTypeName: SimpleExperimentManager, Assembly-CSharp
         m_MethodName: ForceStopExperimentConfirmed
         m_Mode: 1
@@ -2227,7 +2227,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8486691802476286089}
         m_TargetAssemblyTypeName: SimpleExperimentManager, Assembly-CSharp
         m_MethodName: StartStopTrainingStage
         m_Mode: 1
@@ -3311,7 +3311,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8486691802476286089}
         m_TargetAssemblyTypeName: SimpleExperimentManager, Assembly-CSharp
         m_MethodName: ForceStopExperiment
         m_Mode: 1
@@ -3582,7 +3582,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8486691802476286089}
         m_TargetAssemblyTypeName: SimpleExperimentManager, Assembly-CSharp
         m_MethodName: SkipCurrentExperimentStage
         m_Mode: 1

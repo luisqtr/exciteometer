@@ -39,7 +39,7 @@ namespace ExciteOMeter
                 else
                 {
                     EoM_Events.Send_OnDataReceived(VariableType, ExciteOMeterManager.GetTimestamp(), newSamples[0,i]);
-                    LoggerController.instance.WriteLine(LogName.VariableRawECG, newSamples[0,i].ToString("F0") + "," + newSamples[0,i].ToString("F0"));
+                    LoggerController.instance.WriteLine(LogName.VariableRawECG, ExciteOMeterManager.GetTimestampString() + "," + newSamples[0,i].ToString("F0") + "," + newSamples[0,i].ToString("F0"));
                 }
             }
 
@@ -66,7 +66,7 @@ namespace ExciteOMeter
             else
             {
                 EoM_Events.Send_OnDataReceived(VariableType, ExciteOMeterManager.GetTimestamp(), newSample[0]);            
-                LoggerController.instance.WriteLine(LogName.VariableRawECG, timestamp.ToString("F0") + "," + newSample[0].ToString("F0"));
+                LoggerController.instance.WriteLine(LogName.VariableRawECG, ExciteOMeterManager.GetTimestampString() + "," + newSample[0].ToString("F0"));
             }
         }
     }

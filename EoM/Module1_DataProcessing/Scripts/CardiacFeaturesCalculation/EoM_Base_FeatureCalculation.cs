@@ -159,7 +159,7 @@ namespace ExciteOMeter
                 {
                     // Write in files to collect data corresponding to 
                     EoM_Events.Send_OnDataReceived(outputDataType, timestamps[i],  featureValue);
-                    LoggerController.instance.WriteLine(logIdentifier, timestamps[i] + "," + featureValue.ToString());
+                    LoggerController.instance.WriteLine(logIdentifier, ExciteOMeterManager.ConvertFloatToString(timestamps[i]) + "," + ExciteOMeterManager.ConvertFloatToString(featureValue));
                 }
             }
             
@@ -241,14 +241,14 @@ namespace ExciteOMeter
                 {
                     // Write in files to collect data corresponding to 
                     EoM_Events.Send_OnDataReceived(outputDataType, timestamps[i],  featureValue);
-                    LoggerController.instance.WriteLine(logIdentifier, timestamps[i] + "," + featureValue.ToString());
+                    LoggerController.instance.WriteLine(logIdentifier, ExciteOMeterManager.ConvertFloatToString(timestamps[i]) + "," + ExciteOMeterManager.ConvertFloatToString(featureValue));
                 }
             }
             else
             {
                 // CASE: DO NOT MATCH LENGTH OF INPUT SIGNAL, BUT USE TIMESTAMP DIFFERENT THAN LAST SAMPLE
                 EoM_Events.Send_OnDataReceived(outputDataType, timestamps[indexOffsetForTimestamp],  featureValue);
-                LoggerController.instance.WriteLine(logIdentifier, timestamps[indexOffsetForTimestamp] + "," + featureValue.ToString());
+                LoggerController.instance.WriteLine(logIdentifier, ExciteOMeterManager.ConvertFloatToString(timestamps[indexOffsetForTimestamp]) + "," + ExciteOMeterManager.ConvertFloatToString(featureValue));
             }
 
             // Rearrange overlap in signal
@@ -275,7 +275,7 @@ namespace ExciteOMeter
             // Send events and log in file
             ExciteOMeterManager.DebugLog("A new feature was calculated in " + outputDataType.ToString() + ": " + timestamps[timestamps.Count-1] + ", " + featureValue.ToString());
             EoM_Events.Send_OnDataReceived(outputDataType, timestamps[timestamps.Count-1],  featureValue);
-            LoggerController.instance.WriteLine(logIdentifier, timestamps[timestamps.Count-1] + "," + featureValue.ToString());
+            LoggerController.instance.WriteLine(logIdentifier, ExciteOMeterManager.ConvertFloatToString(timestamps[timestamps.Count-1]) + "," + ExciteOMeterManager.ConvertFloatToString(featureValue));
 
             // Rearrange overlap in signal
             // Overlap should not be greater than 95%, because it would generate very often feature calculations that might affect performance.

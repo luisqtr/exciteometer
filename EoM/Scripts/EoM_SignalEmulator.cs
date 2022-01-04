@@ -99,10 +99,10 @@ namespace ExciteOMeter
                 // Send events
                 float HRf = (float)Mathf.RoundToInt(HR);
                 EoM_Events.Send_OnDataReceived(DataType.HeartRate, ExciteOMeterManager.GetTimestamp(), HRf);
-                LoggerController.instance.WriteLine(LogName.VariableHeartRate, ExciteOMeterManager.GetTimestamp().ToString("F6") + "," + HR.ToString("F0"));
+                LoggerController.instance.WriteLine(LogName.VariableHeartRate, ExciteOMeterManager.GetTimestampString() + "," + HR.ToString("F0"));
 
                 EoM_Events.Send_OnDataReceived(DataType.RRInterval, ExciteOMeterManager.GetTimestamp(), RRi);
-                LoggerController.instance.WriteLine(LogName.VariableRrInterval, ExciteOMeterManager.GetTimestamp().ToString("F6") + "," + RRi.ToString("F3"));
+                LoggerController.instance.WriteLine(LogName.VariableRrInterval, ExciteOMeterManager.GetTimestampString() + "," + RRi.ToString("F3"));
             }
 
             // To detect changes in runtime

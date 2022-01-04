@@ -126,7 +126,7 @@ namespace ExciteOMeter
         public void CreateManualMarker(string defaultText, MarkerLabel markerLabel = MarkerLabel.CUSTOM_MARKER)
         {
             EoM_Events.Send_OnStringReceived(DataType.ManualMarkers, ExciteOMeterManager.GetTimestamp(), defaultText);
-            LogMessageUI.instance.WriteConsoleText("New custom marker at " +  ExciteOMeterManager.GetTimestamp().ToString("F2") + " with message " + defaultText);
+            LogMessageUI.instance.WriteConsoleText("New custom marker at " +  ExciteOMeterManager.GetTimestampString(2) + " with message " + defaultText);
             GameObject go = Instantiate(instanceMarkerPrefab, markersParent);
             CustomMarkerScriptUI script = go.GetComponent<CustomMarkerScriptUI>();
             script.Setup(ExciteOMeterManager.GetTimestamp(), defaultText, markerLabel);

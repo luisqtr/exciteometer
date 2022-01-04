@@ -19,8 +19,8 @@ namespace ExciteOMeter{
 
         void ProcessStringLog(ExciteOMeter.DataType type, float timestamp, string message, MarkerLabel label)
         {
-            bool written = LoggerController.instance.WriteLine(LogName.EventsAndMarkers, 
-                                                timestamp + "," +
+            bool written = LoggerController.instance.WriteLine(LogName.EventsAndMarkers,
+                                                ExciteOMeterManager.ConvertFloatToString(timestamp)+ "," +
                                                 type.ToString() + "," +
                                                 message + "," +
                                                 label.ToString() );

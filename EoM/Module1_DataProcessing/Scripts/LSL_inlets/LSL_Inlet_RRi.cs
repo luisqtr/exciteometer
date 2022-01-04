@@ -27,7 +27,7 @@ namespace ExciteOMeter
             //TODO: Use the timestamp from the sensor, which is in nanoseconds.
             EoM_Events.Send_OnDataReceived(VariableType, ExciteOMeterManager.GetTimestamp(), newSample[0]);
 
-            LoggerController.instance.WriteLine(LogName.VariableRrInterval, ExciteOMeterManager.GetTimestamp().ToString("F6") + "," + newSample[0].ToString("F3"));
+            LoggerController.instance.WriteLine(LogName.VariableRrInterval, ExciteOMeterManager.GetTimestampString() + "," + ExciteOMeterManager.ConvertFloatToString(newSample[0]));
         }
     }
 }

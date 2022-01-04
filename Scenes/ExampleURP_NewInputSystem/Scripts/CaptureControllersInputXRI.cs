@@ -84,7 +84,7 @@ public class CaptureControllersInputXRI : MonoBehaviour
                 elapsedTime = 0.0f;
 
                 logIsWriting = LoggerController.instance.WriteLine(logToWrite, 
-                                                ExciteOMeterManager.GetTimestamp().ToString("F5") + "," +
+                                                ExciteOMeterManager.GetTimestampString() + "," +
                                                 leftTriggerValue.ToString("F3") + "," +
                                                 rightTriggerValue.ToString("F3") + "," +
                                                 totalValue.ToString("F3")

@@ -444,7 +444,7 @@ public class SimpleExperimentManager : MonoBehaviour
         if(CurrentState == ExperimentState.InExperiment)
             ExperimentStageHasEnded();
         else
-            ShowPopupMessage("Not in an experimental stage right now. \\Current stage = " + CurrentState.ToString());
+            ShowPopupMessage("Not in an experimental stage right now.\n Current stage = " + CurrentState.ToString());
     }
 
     void ShowPopupMessage(string text)

@@ -90,7 +90,7 @@ namespace ExciteOMeter
                 // Add to class that is exported as JSON
                 SessionVariablesController.instance.WritePostProcessedExciteOMeterIndex(timestampEOM, valueEOM);
                 // Add to CSV file
-                LoggerController.instance.WriteLine(LogName.EOM, timestampEOM.ToString("F6") + "," + valueEOM.ToString("F5"));
+                LoggerController.instance.WriteLine(LogName.EOM, ExciteOMeterManager.ConvertFloatToString(timestampEOM) + "," + ExciteOMeterManager.ConvertFloatToString(valueEOM,5));
             }
             
             return true;

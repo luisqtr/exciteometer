@@ -23,9 +23,6 @@ namespace ExciteOMeter
 
         public bool IsLogging { get => isLogging; set => isLogging = value; }
 
-
-        private string unityTimeStamp;
-
         public DataLogger()
         {
             // Creates an entity, but InitializeDataLogger needs to be called
@@ -55,7 +52,7 @@ namespace ExciteOMeter
             file = new StreamWriter(filepath, true);
 
             //builds the string that will be the _header of the csv _file
-            string fillHeader = "unityTimeStamp";   // Start of the header file
+            string fillHeader = "datetime";   // Start of the header file
 
             for (var i = 0; i < headers.Count; i++)
             {
@@ -78,11 +75,10 @@ namespace ExciteOMeter
 
         public bool WriteLine(string line)
         {
-            if(IsLogging && filepath != "")
+            if (IsLogging && filepath != "")
             {
-                unityTimeStamp = ExciteOMeterManager.GetTimestamp().ToString("F2").Replace(",",".");
-
-                file.WriteLine(unityTimeStamp + "," + line);
+                // Write the `datetime` and `sessionTime` from the global variables, then the data
+                file.WriteLine(GetTimestamp(DateTime.Now) + "," + line);
                 return true;
             }
             // Should reach here only if the file cannot be written.
@@ -97,7 +93,7 @@ namespace ExciteOMeter
 
         public static string GetTimestamp(DateTime value)
         {
-            return value.ToString("yyyy-MM-dd|HH:mm:ss.fff");
+            return value.ToString("yyMMddHHmmss.fff");
         }
     }
 }

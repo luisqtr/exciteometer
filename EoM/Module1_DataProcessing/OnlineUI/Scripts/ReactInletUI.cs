@@ -35,6 +35,9 @@ namespace ExciteOMeter
             // Setup connection indication
             currentlyConnected = false;
             SetConnectedStatus(currentlyConnected);
+
+            // Recording status
+            SetRecordingStatus(false);
         }
 
         void OnEnable()
