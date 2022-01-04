@@ -11,20 +11,25 @@
     public enum DataType
     {
         NONE = 0,
+
+        // Heart activity
         HeartRate,
         RRInterval,
         RawECG,
         RawACC,
+        // Features
         RMSSD,
         SDNN,
-        EOM,
 
+        // Estimated 'Excitement level' >> Excite-O-Meter
+        EOM,
 
         AutomaticMarkers,
         ManualMarkers,
         Screenshots,
 
         // Suffixes need to match the variable `Constants.TransformSuffixes`
+        Headset_array,      // Sends multidimensional data for the receivers that can log multiple values at the time (like `EoM_Base_FeatureCalculation.cs`).
         Headset_posX,
         Headset_posY,
         Headset_posZ,
@@ -36,6 +41,14 @@
         Headset_pitch,
         Headset_roll,
 
+        // Features
+        Headset_VelAcc_Array,
+        headset_velPosX, headset_accPosX,
+        headset_velPosY, headset_accPosY,
+        headset_velPosZ, headset_accPosZ,
+        // TODO: Features for head rotation in quaternions and euler angles
+
+        // Controllers
         LeftController_posX,
         RightController_posX,
     }
@@ -65,6 +78,8 @@
         EOM,
 
         TransformHeadset,        //  Collects position + quaternion + eulerAngles from VR headset
+        FeaturesTransformHeadset, // Velocity and acceleration of position and rotations.
+
         TransformLeftController, 
         TransformRightController,
 
@@ -113,6 +128,25 @@
 
         }
 
+        public static DataType[] SubsetOfFeaturesTransformDataTypes(LogName logname)
+        {
+            DataType[] dataTypeTransformArray = new DataType[Constants.TransformDataTypeSuffixes.Length];
+            switch (logname)
+            {
+                case LogName.FeaturesTransformHeadset:
+                    dataTypeTransformArray = new DataType[]
+                    {
+                        DataType.headset_velPosX, DataType.headset_accPosX,
+                        DataType.headset_velPosY, DataType.headset_accPosY,
+                        DataType.headset_velPosZ, DataType.headset_accPosZ,
+                    };
+                    break;
+                // TODO: For controllers
+            }
+
+            return dataTypeTransformArray;
+
+        }
     }
 }
 

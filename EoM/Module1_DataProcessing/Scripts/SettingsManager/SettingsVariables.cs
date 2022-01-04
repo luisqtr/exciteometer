@@ -58,7 +58,7 @@ public class SettingsVariables
             // Corresponds to the number of displacements to the left in timestamps array
             // E.g. A feature with `sampleBufferLength=5` and `offsetSamplesInTimestamp=0` corresponds to a feature that is 
             //      calculated from [t-4,t-3,t-2,t-1,t], but if `offsetSamplesInTimestamp=3` corresponds to a feature
-            //      calculated from [t-2,t,t+1,t+2,t+3]. And the logfile with contain the timestamp with the offset.
+            //      calculated from [t-1,t,t+1,t+2,t+3]. And the logfile with contain the timestamp with the offset.
             public int offsetSamplesInTimestamp;
 
             // Structure to save multiple features directly.
@@ -80,6 +80,8 @@ public class SettingsVariables
 
         public RealtimeFeature RMSSD =  new RealtimeFeature(true,  10f, 0.0f, 10, 9, 8);
         public RealtimeFeature SDNN = new RealtimeFeature(false, 10f, 0.0f, 5, 1);
+
+        public RealtimeFeature HeadsetVelocityAccelerations = new RealtimeFeature(true, 0f, 0f, 3, 1);
         
     }
 

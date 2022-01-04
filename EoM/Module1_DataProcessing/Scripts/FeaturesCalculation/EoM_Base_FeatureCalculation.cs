@@ -43,11 +43,15 @@ namespace ExciteOMeter
 
         // Stores the values that are used to calculate the features.
         private List<float> timestamps = new List<float>();
-        private List<float> dataBuffer = new List<float>(); 
+        private List<float> dataBuffer = new List<float>();
+        private List<float[]> dataBufferArray = new List<float[]>();
+
+
         private int elementsToDelete = 1;
 
         // Result of the feature
         private float featureValue = 0f;
+        private float[] featureArray; 
         
 
         // Count instances that have finished PostProcessing
@@ -103,12 +107,24 @@ namespace ExciteOMeter
         }
 
         // Most important function, where the feature is calculated based on the data of type `incomingDataType`
-        protected abstract float CalculateFeature(float[] timestamps, float[] values);
+        protected virtual float CalculateFeature(float[] timestamps, float[] values)
+        {
+            // Implement in the derived class for **unidimensional** features.
+            throw new NotImplementedException();
+        }
+
+        protected virtual float[] CalculateFeatureArray(float[] timestamps, float[][] values)
+        {
+            // Implement in the derived class for **multidimensional** features.
+            // First dimension is the 'timestamp' and second is the 'feature'
+            throw new NotImplementedException();
+        }
 
         // Event receivers when a new data comes
         void OnEnable()
         {
             EoM_Events.OnDataReceived += AddToBuffer;
+            EoM_Events.OnDataArrayReceived += AddToBufferArray;         // Multidimensional data (like movement)
             EoM_Events.OnLoggingStateChanged += ChangedLogRecordingStatus;
             EoM_Events.OnPostProcessingStarted += PostProcessing;
         }
@@ -116,6 +132,7 @@ namespace ExciteOMeter
         void OnDisable()
         {
             EoM_Events.OnDataReceived -= AddToBuffer;
+            EoM_Events.OnDataArrayReceived -= AddToBufferArray;
             EoM_Events.OnLoggingStateChanged -= ChangedLogRecordingStatus;
             EoM_Events.OnPostProcessingStarted -= PostProcessing;
         }
@@ -132,6 +149,18 @@ namespace ExciteOMeter
             }
         }
 
+        private void AddToBufferArray(ExciteOMeter.DataType type, float timestamp, float[] values)
+        {
+            if (type == incomingDataType)
+            {
+                timestamps.Add(timestamp);
+                dataBufferArray.Add(values);
+
+                // Increase counter of samples
+                elapsedSamples = dataBufferArray.Count;
+            }
+        }
+
         public void ChangedLogRecordingStatus(bool status)
         {
             if(status) // When new logging session starts
@@ -145,6 +174,7 @@ namespace ExciteOMeter
                 // Restart features calculation from the time the log started.
                 timestamps.Clear();
                 dataBuffer.Clear();
+                dataBufferArray.Clear();
             }
         }
 
@@ -178,12 +208,17 @@ namespace ExciteOMeter
         // Update is called once per frame
         void Update()
         {
-            if(isSampleBasedFeature)
+            if (isSampleBasedFeature)
             {
                 // SAMPLE-BASED FEATURE
                 if (dataBuffer.Count >= sampleBuffer) 
                 {	
                     SampleBasedCalculation();
+                }
+                else if (dataBufferArray.Count >= sampleBuffer)
+                {
+                    // Multidimensional data (e.g., movement)
+                    SampleBasedCalculationArray();
                 }
             }
             else
@@ -194,11 +229,17 @@ namespace ExciteOMeter
                 // Send data each "windowTime"
                 if (elapsedWindowTime >= (windowTime-0.005f)) // 5ms offset in case data is not written because of approximation
                 {
-                    TimeBasedCalculation();
+                    if (dataBuffer.Count >= 0) // Unidimensional feature
+                        TimeBasedCalculation();
+                    else if (dataBufferArray.Count >= 0)
+                        TimeBasedCalculationArray();    // Multidimensional feature
                 }
             }
         }
 
+        /// <summary>
+        /// Calculate feature value from a unidimensional sample-based feature
+        /// </summary>
         void SampleBasedCalculation()
         {
             // Check that data is available
@@ -246,9 +287,11 @@ namespace ExciteOMeter
             }
             else
             {
-                // CASE: DO NOT MATCH LENGTH OF INPUT SIGNAL, BUT USE TIMESTAMP DIFFERENT THAN LAST SAMPLE
-                EoM_Events.Send_OnDataReceived(outputDataType, timestamps[indexOffsetForTimestamp],  featureValue);
-                LoggerController.instance.WriteLine(logIdentifier, ExciteOMeterManager.ConvertFloatToString(timestamps[indexOffsetForTimestamp]) + "," + ExciteOMeterManager.ConvertFloatToString(featureValue));
+                Debug.LogWarning("Error calculating feature. Matching sampling error: logIdentifier" + logIdentifier.ToString());
+
+                //// CASE: DO NOT MATCH LENGTH OF INPUT SIGNAL, BUT USE TIMESTAMP DIFFERENT THAN LAST SAMPLE
+                //EoM_Events.Send_OnDataReceived(outputDataType, timestamps[indexOffsetForTimestamp],  featureValue);
+                //LoggerController.instance.WriteLine(logIdentifier, ExciteOMeterManager.ConvertFloatToString(timestamps[indexOffsetForTimestamp]) + "," + ExciteOMeterManager.ConvertFloatToString(featureValue));
             }
 
             // Rearrange overlap in signal
@@ -258,6 +301,9 @@ namespace ExciteOMeter
             dataBuffer.RemoveRange (0, elementsToDelete);
         }
 
+        /// <summary>
+        /// Calculate features from a unidimensional time-based feature
+        /// </summary>
         void TimeBasedCalculation()
         {
             // New window time is the original window time minus overlapping window. Set elapsed time in proportional position.
@@ -283,5 +329,111 @@ namespace ExciteOMeter
             timestamps.RemoveRange(0,elementsToDelete);
             dataBuffer.RemoveRange (0, elementsToDelete);
         }
-    }
+
+
+        ////////////// MULTIDIMENSIONAL FEATURES
+        /// <summary>
+        /// Calculate features from a MULTIDIMENSIONAL sample-based feature
+        /// </summary>
+        void SampleBasedCalculationArray()
+        {
+            // Check that data is available
+            if (timestamps.Count == 0 && dataBufferArray.Count == 0)
+            {
+                // ExciteOMeterManager.DebugLog("No timestamps or data were found to calculate features");
+                ExciteOMeterManager.LogInFile("No incoming data " + incomingDataType.ToString() + " was found to calculate feature " + outputDataType.ToString());
+                return;
+            }
+            // Calculate feature
+            featureArray = CalculateFeatureArray(timestamps.ToArray(), dataBufferArray.ToArray());
+
+            // Calculate offset of timestamp that corresponds to the calculated feature (# displacements to the left in timestamps)
+            // Examples: Assume `sampleBuffer=5`
+            //           If `offsetSamplesTimestamp=0`, t for calculated feature is [t-4,t-3,...,t]
+            //           If `offsetSamplesTimestamp=3`, t for calculated feature is [t-1,t,t+1,t+2,t+3]
+            indexOffsetForTimestamp = sampleBuffer - offsetSamplesTimestamp - 1;
+
+            // Send events and log in file
+            ExciteOMeterManager.DebugLog("A new feature was calculated in " + outputDataType.ToString() + ": " + timestamps[indexOffsetForTimestamp] + ", Length: " + featureArray.Length.ToString());
+
+            // Flag to know if it is the first calculation of the feature.
+            // If so, the new feature has to match all the timestamps existing before the first timestamp of the feature.
+            if (matchLengthOfInputSignal)
+            {
+                if (isFirstCalculatedFeature)
+                {
+                    isFirstCalculatedFeature = false;
+                    idxStartRepeating = 0;     // No previous data in array, repeat from beginning of input timestamps.
+                }
+                else
+                {
+                    // CASE: Match length and buffer already contains data from previous window
+                    // Based on overlap and offset, the position where to start repeating timestamps is the following formula.
+                    idxStartRepeating = overlappingSamples - offsetSamplesTimestamp;
+                }
+
+                // Get the DataType for each of the features that are calculated
+                DataType[] featureDataTypes = Constants.SubsetOfFeaturesTransformDataTypes(logIdentifier);
+
+                // Fill the previous timestamps of the input signal with the same value of this feature.
+                for (int i = idxStartRepeating; i <= indexOffsetForTimestamp; i++)
+                {
+                    // Write in files to collect data corresponding to 
+
+                    // Create string to save in CSV
+                    string featureArrayText = "";
+                    foreach (float v in featureArray)
+                        featureArrayText += "," + ExciteOMeterManager.ConvertFloatToString(v,4);
+
+                    bool logIsWriting = LoggerController.instance.WriteLine(logIdentifier, ExciteOMeterManager.ConvertFloatToString(timestamps[i]) + featureArrayText);
+                    if (!logIsWriting)
+                        Debug.LogWarning("Error writing movement data. Please setup LoggerController with a file with LogID is" + logIdentifier.ToString());
+
+                    // Send an event with the multidimensional data for the receivers taht can handle multidimensionality
+                    EoM_Events.Send_OnDataArrayReceived(outputDataType, timestamps[i], featureArray);
+
+                    // --------- TODO
+                    //// Visualizer is designed to analyze unidimensional data, therefore multidimensional needs to be sent one by one to the system
+                    //StartCoroutine(SendDataEventsMovement(ExciteOMeterManager.GetTimestamp()));
+                    // BUG: Sending events from the coroutine does not seem to be received...
+                    // ---------
+                    // If the above works, delete the remaining code!! ----------------------
+                    if (featureDataTypes.Length != featureArray.Length)
+                    {
+                        Debug.LogError("Mismatch between the calculated array of features and the expected, in feature with logIdentifier" + logIdentifier);
+                        return;
+                    }
+
+                    for (int j = 0; j < featureArray.Length; j++)
+                    {
+                        EoM_Events.Send_OnDataReceived(featureDataTypes[i], timestamps[i], featureArray[i]);
+                    }
+                    /// --------------------------------------------------------
+                }
+            }
+            else
+            {
+                // CASE: DO NOT MATCH LENGTH OF INPUT SIGNAL, BUT USE TIMESTAMP DIFFERENT THAN LAST SAMPLE
+                EoM_Events.Send_OnDataReceived(outputDataType, timestamps[indexOffsetForTimestamp], featureValue);
+                LoggerController.instance.WriteLine(logIdentifier, ExciteOMeterManager.ConvertFloatToString(timestamps[indexOffsetForTimestamp]) + "," + ExciteOMeterManager.ConvertFloatToString(featureValue));
+            }
+
+            // Rearrange overlap in signal
+            elementsToDelete = sampleBuffer - overlappingSamples;
+
+            timestamps.RemoveRange(0, elementsToDelete);
+            dataBuffer.RemoveRange(0, elementsToDelete);
+        }
+
+        /// <summary>
+        /// Calculate features from a MULTIDIMENSIONAL time-based feature
+        /// </summary>
+        void TimeBasedCalculationArray()
+        {
+            /// TODO: Implement time-based calculation for multidimensional features
+            Debug.LogError("Features based on multidimensional arrays only support sample-based calculation. Please change the feature with LogIdentifier" + logIdentifier.ToString());
+        }
+
+
+        }
 }

@@ -74,7 +74,7 @@ namespace ExciteOMeter{
                     // Create string to save in CSV
                     transformArrayText = "";
                     foreach (float v in transformArray)
-                        transformArrayText += "," + v.ToString("F4").Replace(",", ".");
+                        transformArrayText += "," + ExciteOMeterManager.ConvertFloatToString(v,4);
 
                     logIsWriting = LoggerController.instance.WriteLine(logToWrite, ExciteOMeterManager.GetTimestampString() + transformArrayText);
                     if (!logIsWriting)
@@ -82,13 +82,17 @@ namespace ExciteOMeter{
 
                     //Debug.Log("Sending Movement from " + gameObject.name + " > " + transformArrayText);
 
-                    //EoM_Events.Send_OnDataArrayReceived(variableType, ExciteOMeterManager.GetTimestamp(), transformArray);
+                    // Send an event with the multidimensional data for the receivers taht can handle multidimensionality
+                    EoM_Events.Send_OnDataArrayReceived(DataType.Headset_array, ExciteOMeterManager.GetTimestamp(), transformArray);
 
-                    // Visualizer is designed to analyze unidimensional data, therefore multidimensional needs to be sent one by one to the system
+                    // Send values individually, because they need to be stored in the .json file as unidimensional data, so that they can be visualized
+
+                    // --------- TODO
+                    //// Visualizer is designed to analyze unidimensional data, therefore multidimensional needs to be sent one by one to the system
                     //StartCoroutine(SendDataEventsMovement(ExciteOMeterManager.GetTimestamp()));
-
-
                     // BUG: Sending events from the coroutine does not seem to be received...
+                    // ---------
+                    // If the above works, delete the remaining code!! ----------------------
                     if (transformArray.Length != typesTransformArray.Length)
                         Debug.LogError("The movement arrays are not the same length");
 
@@ -96,6 +100,8 @@ namespace ExciteOMeter{
                     {
                         EoM_Events.Send_OnDataReceived(typesTransformArray[i], ExciteOMeterManager.GetTimestamp(), transformArray[i]);
                     }
+                    /// --------------------------------------------------------
+
                 }
             }
         }

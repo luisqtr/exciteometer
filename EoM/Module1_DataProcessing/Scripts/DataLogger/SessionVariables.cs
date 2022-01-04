@@ -71,6 +71,14 @@ namespace ExciteOMeter
         public TimeSeries headset_pitch = new TimeSeries(DataType.Headset_pitch);
         public TimeSeries headset_roll = new TimeSeries(DataType.Headset_roll);
 
+        // Headset features
+        public TimeSeries headset_velPosX = new TimeSeries(DataType.headset_velPosX);
+        public TimeSeries headset_accPosX = new TimeSeries(DataType.headset_accPosX);
+        public TimeSeries headset_velPosY = new TimeSeries(DataType.headset_velPosY);
+        public TimeSeries headset_accPosY = new TimeSeries(DataType.headset_accPosY);
+        public TimeSeries headset_velPosZ = new TimeSeries(DataType.headset_velPosZ);
+        public TimeSeries headset_accPosZ = new TimeSeries(DataType.headset_accPosZ);
+
         // The main dict used in the viz
         public Dictionary<DataType, TimeSeries> timeseries = new Dictionary<DataType, TimeSeries>();
         
@@ -102,13 +110,21 @@ namespace ExciteOMeter
             timeseries.Add(DataType.Headset_pitch, headset_pitch);
             timeseries.Add(DataType.Headset_roll, headset_roll);
 
-            //foreach (DataType headset_datatype in Constants.SubsetOfTransformDataTypes(LogName.TransformHeadset))
-            //{
-            //    timeseries.Add(headset_datatype, new TimeSeries(headset_datatype));
-            //}
+            // Features head movement
+            timeseries.Add(DataType.headset_velPosX, headset_velPosX);
+            timeseries.Add(DataType.headset_accPosX, headset_accPosX);
+            timeseries.Add(DataType.headset_velPosY, headset_velPosY);
+            timeseries.Add(DataType.headset_accPosY, headset_accPosY);
+            timeseries.Add(DataType.headset_velPosZ, headset_velPosZ);
+            timeseries.Add(DataType.headset_accPosZ, headset_accPosZ);
 
-            // TODO: The same than above for controllers
-        }
+        //foreach (DataType headset_datatype in Constants.SubsetOfTransformDataTypes(LogName.TransformHeadset))
+        //{
+        //    timeseries.Add(headset_datatype, new TimeSeries(headset_datatype));
+        //}
+
+        // TODO: The same than above for controllers
+    }
 
         public void RemoveEmptyTimeSeries()
         {
