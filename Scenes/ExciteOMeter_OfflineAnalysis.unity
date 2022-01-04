@@ -544,6 +544,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 421616404, guid: 6bc8cea8f63319f44a9a994e78d65fd7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 475996525, guid: 6bc8cea8f63319f44a9a994e78d65fd7, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -701,6 +705,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: EoM_OfflineAnalysisManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3154634115870968008, guid: 6bc8cea8f63319f44a9a994e78d65fd7,
+        type: 3}
+      propertyPath: dataTypeSelectorListPrefab
+      value: 
+      objectReference: {fileID: 1803763788337763662, guid: 990e2700e6f35d6498c864f56ee24cc2,
+        type: 3}
     - target: {fileID: 3154634115870968009, guid: 6bc8cea8f63319f44a9a994e78d65fd7,
         type: 3}
       propertyPath: m_RootOrder
