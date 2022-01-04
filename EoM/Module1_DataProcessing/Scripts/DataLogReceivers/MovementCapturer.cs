@@ -83,9 +83,19 @@ namespace ExciteOMeter{
                     //Debug.Log("Sending Movement from " + gameObject.name + " > " + transformArrayText);
 
                     //EoM_Events.Send_OnDataArrayReceived(variableType, ExciteOMeterManager.GetTimestamp(), transformArray);
-                    
+
                     // Visualizer is designed to analyze unidimensional data, therefore multidimensional needs to be sent one by one to the system
-                    StartCoroutine(SendDataEventsMovement(ExciteOMeterManager.GetTimestamp()));
+                    //StartCoroutine(SendDataEventsMovement(ExciteOMeterManager.GetTimestamp()));
+
+
+                    // BUG: Sending events from the coroutine does not seem to be received...
+                    if (transformArray.Length != typesTransformArray.Length)
+                        Debug.LogError("The movement arrays are not the same length");
+
+                    for (int i = 0; i < transformArray.Length; i++)
+                    {
+                        EoM_Events.Send_OnDataReceived(typesTransformArray[i], ExciteOMeterManager.GetTimestamp(), transformArray[i]);
+                    }
                 }
             }
         }
