@@ -422,7 +422,7 @@ namespace ExciteOMeter
             elementsToDelete = sampleBuffer - overlappingSamples;
 
             timestamps.RemoveRange(0, elementsToDelete);
-            dataBuffer.RemoveRange(0, elementsToDelete);
+            dataBufferArray.RemoveRange(0, elementsToDelete);
         }
 
         /// <summary>

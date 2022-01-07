@@ -61,7 +61,10 @@ namespace ExciteOMeter.Vizualisation
                     // Head transform
                     DataType.Headset_posX, DataType.Headset_posY, DataType.Headset_posZ, 
                     DataType.Headset_q0, DataType.Headset_qi,DataType.Headset_qj, DataType.Headset_qk, 
-                    DataType.Headset_yaw, DataType.Headset_pitch, DataType.Headset_roll
+                    DataType.Headset_yaw, DataType.Headset_pitch, DataType.Headset_roll,
+                    // Features Head transform
+                    DataType.headset_velPosX, DataType.headset_velPosY, DataType.headset_velPosZ,
+                    DataType.headset_accPosX, DataType.headset_accPosY, DataType.headset_accPosZ,
                 }, 
                 EntryTypes.LINEGRAPH },
         };

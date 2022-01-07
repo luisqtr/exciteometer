@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 2063676494917070970}
   - component: {fileID: 1402736874670845286}
   - component: {fileID: 1402736874670845285}
+  - component: {fileID: 960092429}
   m_Layer: 0
   m_Name: FeatureCalculation
   m_TagString: Untagged
@@ -170,6 +171,27 @@ MonoBehaviour:
   incomingDataType: 2
   outputDataType: 6
   logIdentifier: 6
+  isTimeBasedFeature: 1
+  windowTime: 5
+  elapsedWindowTime: 0
+  isSampleBasedFeature: 0
+  sampleBuffer: 5
+  elapsedSamples: 0
+--- !u!114 &960092429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402736874670845307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e32e704b15ab2d4691244f4635e2894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  incomingDataType: 11
+  outputDataType: 22
+  logIdentifier: 10
   isTimeBasedFeature: 1
   windowTime: 5
   elapsedWindowTime: 0
@@ -303,7 +325,7 @@ MonoBehaviour:
     - message
     - details
   - filename: subjective.csv
-    logID: 12
+    logID: 13
     headers:
     - sessionTime
     - leftTrigger
@@ -323,34 +345,16 @@ MonoBehaviour:
     - yaw
     - pitch
     - roll
-  - filename: movLController.csv
+  - filename: movHeadsetFeatures.csv
     logID: 10
     headers:
     - sessionTime
-    - posX
-    - posY
-    - posZ
-    - q0
-    - qi
-    - qj
-    - qk
-    - yaw
-    - pitch
-    - roll
-  - filename: movRController.csv
-    logID: 11
-    headers:
-    - sessionTime
-    - posX
-    - posY
-    - posZ
-    - q0
-    - qi
-    - qj
-    - qk
-    - yaw
-    - pitch
-    - roll
+    - velPosX
+    - accPosX
+    - velPosY
+    - accPosY
+    - velPosZ
+    - accPosZ
 --- !u!114 &1402736874109273205
 MonoBehaviour:
   m_ObjectHideFlags: 0
