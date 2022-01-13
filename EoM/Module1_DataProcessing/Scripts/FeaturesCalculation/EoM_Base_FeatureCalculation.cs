@@ -433,7 +433,7 @@ namespace ExciteOMeter
 
                     for (int j = 0; j < featureArray.Length; j++)
                     {
-                        EoM_Events.Send_OnDataReceived(featureDataTypes[i], timestamps[i], featureArray[i]);
+                        EoM_Events.Send_OnDataReceived(featureDataTypes[j], timestamps[i], featureArray[j]);
                     }
                     /// --------------------------------------------------------
                 }
