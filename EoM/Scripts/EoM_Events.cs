@@ -53,6 +53,18 @@ namespace ExciteOMeter
         {
             if (OnDataArrayReceived != null)
                 OnDataArrayReceived(dataType, timestamp, array);
+            //{
+                
+            //    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// TEMP
+            //    if (dataType == DataType.Headset_array)
+            //    {
+            //        string t = ", |" + array[7].ToString("f0") + ";" + array[8].ToString("f0") + ";" + array[9].ToString("F0");
+
+            //        Debug.Log("EVENT OnDataArrayReceived: " + t);
+            //    }
+            //    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// TEMP
+            //}
+            
         }
 
 

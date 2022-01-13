@@ -37,8 +37,8 @@
         Headset_qi,
         Headset_qj,
         Headset_qk,
-        Headset_yaw,
         Headset_pitch,
+        Headset_yaw,
         Headset_roll,
 
         // Features
@@ -46,6 +46,10 @@
         headset_velPosX, headset_accPosX,
         headset_velPosY, headset_accPosY,
         headset_velPosZ, headset_accPosZ,
+        headset_velQ0, headset_velQi, headset_velQj, headset_velQk,
+        headset_accQ0, headset_accQi, headset_accQj, headset_accQk,
+        headset_velPitch, headset_velYaw, headset_velRoll,
+        headset_accPitch, headset_accYaw, headset_accRoll,
         // TODO: Features for head rotation in quaternions and euler angles
 
         // Controllers
@@ -93,7 +97,17 @@
 
         public static string[] TransformDataTypeSuffixes { get => transformSuffixes; }
         public static string[] transformSuffixes = new string[] {
-            "_posX", "_posY", "_posZ", "_q0", "_qi", "_qj", "_qk", "_yaw", "_pitch", "_roll"
+            "_posX", "_posY", "_posZ", "_q0", "_qi", "_qj", "_qk", "_pitch", "_yaw", "_roll"
+        };
+
+        public static string[] TransformFeaturesDataTypeSuffixes { get => transformSuffixes; }
+        public static string[] transformFeaturesSuffixes = new string[] {
+            "_velPosX", "_velPosY", "_velPosZ",
+            "_accPosX", "_accPosY", "_accPosZ",
+            "_velq0", "_velqi", "_velqj", "_velqk",
+            "_accq0", "_accqi", "_accqj", "_accqk",
+            "_velPitch", "_velYaw", "_velRoll",
+            "_accPitch", "_accYaw", "_accRoll",
         };
 
         /// <summary>
@@ -115,7 +129,7 @@
                     {
                         DataType.Headset_posX, DataType.Headset_posY, DataType.Headset_posZ,
                         DataType.Headset_q0, DataType.Headset_qi, DataType.Headset_qj, DataType.Headset_qk,
-                        DataType.Headset_yaw, DataType.Headset_pitch, DataType.Headset_roll
+                        DataType.Headset_pitch, DataType.Headset_yaw, DataType.Headset_roll,
                     };
                     break;
                 case LogName.TransformLeftController:
@@ -136,9 +150,12 @@
                 case LogName.FeaturesTransformHeadset:
                     dataTypeTransformArray = new DataType[]
                     {
-                        DataType.headset_velPosX, DataType.headset_accPosX,
-                        DataType.headset_velPosY, DataType.headset_accPosY,
-                        DataType.headset_velPosZ, DataType.headset_accPosZ,
+                        DataType.headset_velPosX, DataType.headset_velPosY, DataType.headset_velPosZ,
+                        DataType.headset_accPosX, DataType.headset_accPosY, DataType.headset_accPosZ,
+                        DataType.headset_velQ0, DataType.headset_velQi, DataType.headset_velQj, DataType.headset_velQk,
+                        DataType.headset_accQ0, DataType.headset_accQi, DataType.headset_accQj, DataType.headset_accQk,
+                        DataType.headset_velPitch, DataType.headset_velYaw, DataType.headset_velRoll,
+                        DataType.headset_accPitch, DataType.headset_accYaw, DataType.headset_accRoll,
                     };
                     break;
                 // TODO: For controllers

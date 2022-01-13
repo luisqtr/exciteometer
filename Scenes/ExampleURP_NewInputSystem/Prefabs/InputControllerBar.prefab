@@ -614,5 +614,5 @@ MonoBehaviour:
   colorMid: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   upperThreshold: 0.8
   colorHigh: {r: 1, g: 0, b: 0, a: 1}
-  logToWrite: 12
+  logToWrite: 13
   sendingPeriod: 1

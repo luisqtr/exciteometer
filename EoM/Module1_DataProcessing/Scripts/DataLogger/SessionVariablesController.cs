@@ -84,8 +84,15 @@ namespace ExciteOMeter
             // Only process data when a file is configured
             if(!isConfigured) return;
 
-            Values.timeseries[type].timestamp.Add(timestamp);
-            Values.timeseries[type].value.Add(value);
+            try
+            {
+                Values.timeseries[type].timestamp.Add(timestamp);
+                Values.timeseries[type].value.Add(value);
+            }
+            catch (Exception)
+            {
+                Debug.Log("Omitted data point > Data Type: " + type.ToString() + " - Timestamp: " + timestamp + " - Value: " + value);
+            }
         }
 
         private void ExciteOMeterMarkerReceived(DataType type, float timestamp, string message, MarkerLabel label)

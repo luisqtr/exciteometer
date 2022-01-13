@@ -149,13 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   incomingDataType: 2
   outputDataType: 5
-  logIdentifier: 5
-  isTimeBasedFeature: 1
-  windowTime: 5
-  elapsedWindowTime: 0
-  isSampleBasedFeature: 0
-  sampleBuffer: 5
-  elapsedSamples: 0
+  logIdentifier: 6
+  multidimensionalInputData: 0
 --- !u!114 &1402736874670845285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,13 +165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   incomingDataType: 2
   outputDataType: 6
-  logIdentifier: 6
-  isTimeBasedFeature: 1
-  windowTime: 5
-  elapsedWindowTime: 0
-  isSampleBasedFeature: 0
-  sampleBuffer: 5
-  elapsedSamples: 0
+  logIdentifier: 7
+  multidimensionalInputData: 0
 --- !u!114 &960092429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,12 +182,7 @@ MonoBehaviour:
   incomingDataType: 11
   outputDataType: 22
   logIdentifier: 10
-  isTimeBasedFeature: 1
-  windowTime: 5
-  elapsedWindowTime: 0
-  isSampleBasedFeature: 0
-  sampleBuffer: 5
-  elapsedSamples: 0
+  multidimensionalInputData: 1
 --- !u!1 &1999586636346365288
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,19 +327,33 @@ MonoBehaviour:
     - qi
     - qj
     - qk
-    - yaw
     - pitch
+    - yaw
     - roll
   - filename: movHeadsetFeatures.csv
     logID: 10
     headers:
     - sessionTime
     - velPosX
-    - accPosX
     - velPosY
-    - accPosY
     - velPosZ
+    - accPosX
+    - accPosY
     - accPosZ
+    - velQ0
+    - velQi
+    - velQj
+    - velQk
+    - accQ0
+    - accQi
+    - accQj
+    - accQk
+    - velPitch
+    - velYaw
+    - velRoll
+    - accPitch
+    - accYaw
+    - accRoll
 --- !u!114 &1402736874109273205
 MonoBehaviour:
   m_ObjectHideFlags: 0

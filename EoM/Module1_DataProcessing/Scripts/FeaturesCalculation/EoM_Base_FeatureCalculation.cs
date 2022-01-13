@@ -17,19 +17,23 @@ namespace ExciteOMeter
         [Tooltip("Which is the type of data sent from this feature calculation")]
         public ExciteOMeter.DataType outputDataType = DataType.NONE;    // What is the source of the data.
 
-        
         [Tooltip("Unique identifier for the log file of this feature")]
         public ExciteOMeter.LogName logIdentifier = LogName.UNDEFINED;
 
-        [Header("DO NOT change here, but in `SettingsVariables.cs`")]
-        [SerializeField] protected bool isTimeBasedFeature = true;
-        [SerializeField] protected float windowTime = 5f; 
-        [SerializeField] private float elapsedWindowTime = 0.0f;        // Counter of the time before calculating feature
-        protected float overlappingFraction = .95f;  
+        [Tooltip("Whether the feature will deal with multidimensional inputs")]
+        public bool multidimensionalInputData = false;
+        //[Tooltip("This flag sends the final feature values to be post-processed. E.g., required for HR and RMSSD to calculate `EoM level` after-session.")]
+        //public bool sendFeaturesForPostProcessingStage = true; // TODO: A flag to define which features are forwarded for post-processing (after session recording ended)
 
-        [SerializeField] protected bool isSampleBasedFeature = false;
-        [SerializeField] protected int sampleBuffer = 5; 
-        [SerializeField] private int elapsedSamples = 0;                // Counter of the time before calculating feature
+        [Header("DO NOT change here, but in `SettingsVariables.cs`")]
+        /*[SerializeField]*/ protected bool isTimeBasedFeature = true;
+        /*[SerializeField]*/ protected float windowTime = 5f;
+        /*[SerializeField]*/ private float elapsedWindowTime = 0.0f;        // Counter of the time before calculating feature
+        protected float overlappingFraction = .95f;
+
+        /*[SerializeField]*/ protected bool isSampleBasedFeature = false;
+        /*[SerializeField]*/ protected int sampleBuffer = 5;
+        /*[SerializeField]*/ private int elapsedSamples = 0;                // Counter of the time before calculating feature
         protected int overlappingSamples = 4;  
         protected int offsetSamplesTimestamp = 0;
 
@@ -123,18 +127,23 @@ namespace ExciteOMeter
         // Event receivers when a new data comes
         void OnEnable()
         {
-            EoM_Events.OnDataReceived += AddToBuffer;
-            EoM_Events.OnDataArrayReceived += AddToBufferArray;         // Multidimensional data (like movement)
             EoM_Events.OnLoggingStateChanged += ChangedLogRecordingStatus;
             EoM_Events.OnPostProcessingStarted += PostProcessing;
+            
+            if(multidimensionalInputData)
+                EoM_Events.OnDataArrayReceived += AddToBufferArray;         // Multidimensional data (like movement)
+            else
+                EoM_Events.OnDataReceived += AddToBuffer;
         }
 
         void OnDisable()
         {
-            EoM_Events.OnDataReceived -= AddToBuffer;
-            EoM_Events.OnDataArrayReceived -= AddToBufferArray;
             EoM_Events.OnLoggingStateChanged -= ChangedLogRecordingStatus;
             EoM_Events.OnPostProcessingStarted -= PostProcessing;
+            if(multidimensionalInputData)
+                EoM_Events.OnDataArrayReceived -= AddToBufferArray;
+            else
+                EoM_Events.OnDataReceived -= AddToBuffer;
         }
 
         private void AddToBuffer(ExciteOMeter.DataType type, float timestamp, float value)
@@ -154,7 +163,18 @@ namespace ExciteOMeter
             if (type == incomingDataType)
             {
                 timestamps.Add(timestamp);
-                dataBufferArray.Add(values);
+                dataBufferArray.Add( (float[])values.Clone() ); // If I don't make a copy, it refers to the same position in memory.
+
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// TEMP
+                //if (type == DataType.Headset_array)
+                //{
+                //    string t = "";
+                //    foreach (float[] d in dataBufferArray)
+                //        t += ", |" + d[7].ToString("f0") + ";" + d[8].ToString("f0") + ";" + d[9].ToString("F0");
+
+                //    Debug.Log("feature logname: " + logIdentifier + "headset_array data: " + t);
+                //}
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// TEMP
 
                 // Increase counter of samples
                 elapsedSamples = dataBufferArray.Count;
@@ -212,13 +232,19 @@ namespace ExciteOMeter
             {
                 // SAMPLE-BASED FEATURE
                 if (dataBuffer.Count >= sampleBuffer) 
-                {	
-                    SampleBasedCalculation();
+                {
+                    if (!multidimensionalInputData)
+                        SampleBasedCalculation();
+                    else
+                        Debug.LogError("Please check that the `multidimensionalInputData` is unchecked for feature logName:" + logIdentifier);
                 }
                 else if (dataBufferArray.Count >= sampleBuffer)
                 {
                     // Multidimensional data (e.g., movement)
-                    SampleBasedCalculationArray();
+                    if(multidimensionalInputData)
+                        SampleBasedCalculationArray();
+                    else
+                        Debug.LogError("Please check that the `multidimensionalInputData` is checked for feature logName:" + logIdentifier);
                 }
             }
             else
@@ -389,10 +415,11 @@ namespace ExciteOMeter
                     if (!logIsWriting)
                         Debug.LogWarning("Error writing movement data. Please setup LoggerController with a file with LogID is" + logIdentifier.ToString());
 
-                    // Send an event with the multidimensional data for the receivers taht can handle multidimensionality
-                    EoM_Events.Send_OnDataArrayReceived(outputDataType, timestamps[i], featureArray);
 
-                    // --------- TODO
+                    //// --------- TODO
+                    //// Send an event with the multidimensional data for the receivers taht can handle multidimensionality
+                    //EoM_Events.Send_OnDataArrayReceived(outputDataType, timestamps[i], featureArray);
+
                     //// Visualizer is designed to analyze unidimensional data, therefore multidimensional needs to be sent one by one to the system
                     //StartCoroutine(SendDataEventsMovement(ExciteOMeterManager.GetTimestamp()));
                     // BUG: Sending events from the coroutine does not seem to be received...

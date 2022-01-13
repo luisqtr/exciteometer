@@ -52,7 +52,7 @@ namespace ExciteOMeter{
             if (isConfigured && ExciteOMeterManager.currentlyRecordingSession)
             {
                 // Timer control
-                elapsedTime += Time.deltaTime;
+                elapsedTime += Time.fixedDeltaTime;
 
                 // Send data each "sendingPeriod"
                 if (elapsedTime >= sendingPeriod)
@@ -67,9 +67,9 @@ namespace ExciteOMeter{
                     transformArray[4] = objectToTrack.localRotation.x;  // Q in the axis i
                     transformArray[5] = objectToTrack.localRotation.y;  // Q in the axis j
                     transformArray[6] = objectToTrack.localRotation.z;  // Q in the axis k
-                    transformArray[7] = objectToTrack.localEulerAngles.y; // Yaw (left-right)
-                    transformArray[8] = objectToTrack.localEulerAngles.x; // Yaw (up-down)
-                    transformArray[9] = objectToTrack.localEulerAngles.z; // Yaw (towards shoulders)
+                    transformArray[7] = objectToTrack.localEulerAngles.x; // Pitch (up-down)
+                    transformArray[8] = objectToTrack.localEulerAngles.y; // Yaw (left-right)
+                    transformArray[9] = objectToTrack.localEulerAngles.z; // Roll (towards shoulders)
 
                     // Create string to save in CSV
                     transformArrayText = "";
