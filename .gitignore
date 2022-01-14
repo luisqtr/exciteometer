@@ -75,7 +75,10 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-
 # CUSTOM
 /[Aa]ssets/EoM_Validation/
 /[Aa]ssets/EoM_Validation.meta
+
+/docs/*.meta
+LICENSE.meta
+README.md.meta
