@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/URP/CustomInputActions.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/exciteometer/Scenes/ExampleURP_NewInputSystem/InputActions/CustomInputActions.inputactions'
 
 using System;
 using System.Collections;

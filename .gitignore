@@ -81,5 +81,5 @@ crashlytics-build.properties
 
 /docs/*.meta
 CONTRIBUTING.md.meta
-LICENSE.md.meta
+LICENSE.meta
 README.md.meta
