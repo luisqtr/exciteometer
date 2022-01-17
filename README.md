@@ -1,18 +1,17 @@
 <a href="https://exciteometer.eu">
-<img alt="Excite-O-Meter" src="./docs/images/ExciteOmeter_Name.png" width="60%"/>
+<img alt="Excite-O-Meter" src="./docs/images/EoM_logo_name_horizontal.png" width="65%"/>
 </a>
 
 <!-- ![Logo](./docs/images/ExciteOmeter_Name.png){:width="50%"} -->
 
-<!-- [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/luiseduve/exciteometer) -->
 ![Contributors](https://img.shields.io/github/contributors/luiseduve/exciteometer?style=plastic)
 ![Forks](https://img.shields.io/github/forks/luiseduve/exciteometer?style=plastic)
 ![Stars](https://img.shields.io/github/stars/luiseduve/exciteometer?style=plastic)
 ![Licence](https://img.shields.io/github/license/luiseduve/exciteometer?style=plastic)
 ![Release](https://img.shields.io/github/v/release/luiseduve/exciteometer?style=plastic)
-<!-- ![Issues](https://img.shields.io/github/issues/luiseduve/exciteometer?style=plastic) -->
 
-Table of Contents
+
+*Table of Contents*
 
 - [Description](#description)
 - [How to use?](#how-to-use)
@@ -36,27 +35,27 @@ Table of Contents
 
 The `EoM` enables the integation of heart activity and movement analysis in any standalone application created with Unity, intended for Extended Reality (XR). This plugin contains all the logic to record data from external wearable sensors, log into persistent files, and visualize the captured data without leaving the Unity Editor. 
 
-The tool is simple to use and doesn't require coding. The `EoM` is useful mainly in two **use cases**: 1) you are a *Unity developer* wanting to see the responses that your application induces on your users. 2) you are a *researcher* running studies (e.g., psychology or behavioral research) wanting to collect data using a Unity environment that you created or available online.
+The tool is simple to use and doesn't require coding. The `EoM` is particularly suitable in two **use cases**: 1) for hobbyists or *Unity developers* wanting to measure the body responses that your application induces on your users. 2) for *researcher* running scientific experiments (e.g., psychology or behavioral research) in XR and wanting to easily collect data using a Unity environment that you created or available online.
 
-Currently, the `EoM` is compatible with the the chest strap sensor [Polar H10](https://www.polar.com/us-en/products/accessories/h10_heart_rate_sensor) to capture **heart rate (HR)** and heart rate variability data (HRV), and calculate cardiac features in real time (i.e., RMSSD, SDNN). It also records **movement** from any object in the scene, useful to record head movement from **Virtual Reality (VR)** headsets record headsets. Additional data like screenshots and manual markers can be added to label actions from the users while interacting with your XR environment. Finally, it includes a data visualizer to review the session of the user offline, showing in synchrony all the time-series data, screenshots, and markers. Everything works in the Unity Editor *and in the final compiled application*.
+The `EoM` may be used without external wearable sensors. However, the tool's main advantage is the easy integration with body sensors. Currently, it is compatible with the chest strap sensor [Polar H10](https://www.polar.com/us-en/products/accessories/h10_heart_rate_sensor) to capture **heart rate (HR)** and heart rate variability data (HRV), and calculate cardiac features in real time (i.e., RMSSD, SDNN). It also records **movement** from any object in the scene, useful to record head movement from **Virtual Reality (VR)** headsets record headsets. Additional data like screenshots and manual markers can be added to label actions from the users while interacting with your XR environment. Finally, it includes a data visualizer to review the session of the user offline, showing in synchrony all the time-series data, screenshots, and markers. Everything works in the Unity Editor *and in the final compiled application*.
 
 ## How to use?
 
-_**Note:** The description below is a summary of the complete step-by-step [user manual available HERE](docs/UserManual.md)._
+_**Note:** The description below is a summary of the complete step-by-step [user manual available HERE](./docs/1_UserManual.md).
 
 ### Prerequisites
 
 The `EoM` package already ships modified versions of two library dependencies: 1) [LSL](https://github.com/sccn/labstreaminglayer) for handling time series through the network, and 2) [UI Extensions v2.2.0](https://bitbucket.org/UnityUIExtensions/unity-ui-extensions/) to visualize time series data in the Unity UI. In addition, you need to install [Text Mesh PRO](https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/manual/index.html) (TMPro) in your Unity project.
 
-To collect data from external sensors, it is required to use the `Excite-O-Meter | Devices`, a middleware software that we developed as a bridge between wearable sensors non-compatible with LSL and the Unity package. `PROVIDE DOWNLOAD LINK!!!!!!!`
+To collect data from external sensors, it is required to use the `Excite-O-Meter | Devices`, a middleware software that we developed as a bridge between wearable sensors non-compatible with LSL and the Unity package. Read the details about how to setup the devices in [this document](./docs/2_SetupDevices.md)
 
 ### Importing in Unity
 
-You can import the `.unitypackage`. from `PROVIDE DOWNLOAD LINK!!!!`. If your Unity project already uses GIT, you can use this branch as a submodule: `git add submodule https://github.com/luiseduve/exciteometer.git`. Read more details in the [user manual](docs/UserManual.md).
+You can import the `.unitypackage`. from `PROVIDE DOWNLOAD LINK!!!!`. If your Unity project already uses GIT, you can use this branch as a submodule: `git add submodule https://github.com/luiseduve/exciteometer.git`. Read more details in the [user manual](./docs/1_UserManual.md).
 
 ### Example
 
-The package includes an example scene `Scenes\Example_withURP_NewInputSystem.unity`. Read more details in the [user manual](docs/UserManual.md).
+The package includes an example scene `Scenes/Example_withURP_NewInputSystem.unity`. Read more details in the [description of the example](./docs/3_Example.md).
 
 The last version of the example scene was tested on:
 - Unity 2020.3.19f1
@@ -86,7 +85,7 @@ If the `EoM` is useful for your research, please consider citing the following p
 
 ## How to contribute?
 
-The contribution guidelines are available [HERE](./CONTRIBUTING.md).
+The contribution guidelines are available [HERE](./docs/CONTRIBUTING.md).
 
 ## More information
 
