@@ -16,8 +16,8 @@ Table of Contents
 
 - [Description](#description)
 - [How to use?](#how-to-use)
-  - [Dependencies](#dependencies)
-  - [Instructions](#instructions)
+  - [Prerequisites](#prerequisites)
+  - [Importing in Unity](#importing-in-unity)
   - [Example](#example)
   - [Scientific references](#scientific-references)
 - [How to contribute?](#how-to-contribute)
@@ -25,48 +25,44 @@ Table of Contents
   - [Project's website](#projects-website)
   - [More published papers about the `EoM`](#more-published-papers-about-the-eom)
   - [Credits](#credits)
-  - [Previous releases](#previous-releases)
 
 ---
 
 ## Description
 
-> The Excite-O-Meter (`EoM`) is a package that can be included in your existing standalone Unity projects to easily record users' data divided by sessions. It captures heart and motion activity, and enables easy data visualization in your compiled desktop Unity application.
+> The Excite-O-Meter (`EoM`) is a package that extends a standalone Unity project with functionalities to easily record users' data in experimental sessions. It captures heart and motion activity, extracts relevant features automatically, and visualizes recorded data directly in your compiled desktop Unity application. Useful for Unity developers wanting to analyze users' behavior or researchers conducting empirical studies with XR systems.
 
 ---
 
-The `EoM` enables the integation of heart activity and movement analysis in any standalone application created with Unity, intended for Extended Reality (XR). This plugin contains all the logic to record data from external sensors, log into persistent files, and visualize the captured data without leaving the Unity Editor. 
+The `EoM` enables the integation of heart activity and movement analysis in any standalone application created with Unity, intended for Extended Reality (XR). This plugin contains all the logic to record data from external wearable sensors, log into persistent files, and visualize the captured data without leaving the Unity Editor. 
 
-The tool is simple to use and doesn't require coding. The `EoM` is useful mainly in two **use cases**: 1) you are a *Unity developer* wanting to see the responses that your application induces on your users. 2) you are a *researcher* running studies (e.g., psychology or behavioral research) wanting to collect behavioral data in a Unity environment that you created or found available.
+The tool is simple to use and doesn't require coding. The `EoM` is useful mainly in two **use cases**: 1) you are a *Unity developer* wanting to see the responses that your application induces on your users. 2) you are a *researcher* running studies (e.g., psychology or behavioral research) wanting to collect data using a Unity environment that you created or available online.
 
 Currently, the `EoM` is compatible with the the chest strap sensor [Polar H10](https://www.polar.com/us-en/products/accessories/h10_heart_rate_sensor) to capture **heart rate (HR)** and heart rate variability data (HRV), and calculate cardiac features in real time (i.e., RMSSD, SDNN). It also records **movement** from any object in the scene, useful to record head movement from **Virtual Reality (VR)** headsets record headsets. Additional data like screenshots and manual markers can be added to label actions from the users while interacting with your XR environment. Finally, it includes a data visualizer to review the session of the user offline, showing in synchrony all the time-series data, screenshots, and markers. Everything works in the Unity Editor *and in the final compiled application*.
 
 ## How to use?
 
-### Dependencies
+_**Note:** The description below is a summary of the complete step-by-step [user manual available HERE](docs/UserManual.md)._
 
-The tool requires middleware software to connect to the external sensors.
+### Prerequisites
 
-The Unity project requires the previous packages:
-- ui-extensions
-- TMPro.
+The `EoM` package already ships modified versions of two library dependencies: 1) [LSL](https://github.com/sccn/labstreaminglayer) for handling time series through the network, and 2) [UI Extensions v2.2.0](https://bitbucket.org/UnityUIExtensions/unity-ui-extensions/) to visualize time series data in the Unity UI. In addition, you need to install [Text Mesh PRO](https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/manual/index.html) (TMPro) in your Unity project.
 
-### Instructions
+To collect data from external sensors, it is required to use the `Excite-O-Meter | Devices`, a middleware software that we developed as a bridge between wearable sensors non-compatible with LSL and the Unity package. `PROVIDE DOWNLOAD LINK!!!!!!!`
 
-There are two ways to include the `EoM` package in your existing Unity project.
-Instructions to add exciteometer to a Unity project, and continue contributing to the EoM while working in the specific project.
+### Importing in Unity
 
-- The host Unity project should use git VCS.
-- Change to the assets folder of the Unity project: `cd Assets`
-- Add the exciteometer submodule: `git submodule add https://github.com/luiseduve/exciteometer.git`
-- Reimport
-
-**Note:** Check the step-by-step User Manual [HERE](docs/QuickReference.md)
+You can import the `.unitypackage`. from `PROVIDE DOWNLOAD LINK!!!!`. If your Unity project already uses GIT, you can use this branch as a submodule: `git add submodule https://github.com/luiseduve/exciteometer.git`. Read more details in the [user manual](docs/UserManual.md).
 
 ### Example
 
-Tested on:
-- Unity 2020.3.19f1 using URP pipeline and new input system.
+The package includes an example scene `Scenes\Example_withURP_NewInputSystem.unity`. Read more details in the [user manual](docs/UserManual.md).
+
+The last version of the example scene was tested on:
+- Unity 2020.3.19f1
+- Universal Rendering Pipeline - [URP v10.6.0](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@10.6/manual/)
+- Using the New Unity [Input System v1.0.2](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/index.html).
+- Project configured as standalone, and using OpenXR as plug-in provider.
 
 
 ### Scientific references
@@ -105,12 +101,8 @@ The project's website (<http://exciteometer.eu/>) contains additional informatio
 ### Credits
 
 * The project is currently maintained by [Luis Quintero](http://luiseduve.github.io/), part of his PhD project at the [Data Science Group](http://datascience.dsv.su.se/) at Stockholm University, Sweden.
-* The project leader was [Michael Gaebler](https://www.michaelgaebler.com/), who conceptualized the project and led the work from the first publication. The team was composed by Luis Quintero, John Muñoz, and Jeroen de Mooij.
-* **Acknowledgements:** The authors wish to thank Anna Francová and Jessica Gärtner for their support in the empirical evaluation of the first version of the `EoM`;
-as well as Johanne Tromp, Felix Klotzsche, Mert Akbal, and
-Alexander Masurovsky for helping in the conceptualization of the
-project on its first stage. This project received funding from the European Union’s Horizon 2020 research and innovation programme through the XR4ALL project with grant agreement N° 825545.
-
-### Previous releases
-
-The first version of the **Excite-O-Meter** is the **development** branch . To download the binaries and documentation please check the branch `release_v1.0.1`
+* The project leader was [Michael Gaebler](https://www.michaelgaebler.com/), who conceptualized the project and led the work from the first publication, as found in the branch [`release_v1.0.1`](https://github.com/luiseduve/exciteometer/tree/release_v1.0.1).
+* *Acknowledgements:*
+* The authors wish to thank Anna Francová and Jessica Gärtner for their support in the empirical evaluation of the first version of the `EoM`; as well as Johanne Tromp, Felix Klotzsche, Mert Akbal, and Alexander Masurovsky for helping in the conceptualization of the project on its first stage.
+* This project received funding from the European Union’s Horizon 2020 research and innovation programme through the XR4ALL project with grant agreement N° 825545.
+* Thanks to all contributors from the required libraries [LSL](https://github.com/sccn/labstreaminglayer), [UI Extensions](https://bitbucket.org/UnityUIExtensions/unity-ui-extensions/).

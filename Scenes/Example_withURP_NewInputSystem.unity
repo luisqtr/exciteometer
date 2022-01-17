@@ -223,7 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalSpeed: 1
   verticalSpeed: 1
-  movementSpeed: 0.2
+  movementSpeed: 0.05
 --- !u!114 &282055426
 MonoBehaviour:
   m_ObjectHideFlags: 0
