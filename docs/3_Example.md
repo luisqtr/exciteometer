@@ -1,17 +1,21 @@
-**Example Unity | Excite-O-Meter **
+# **Example Unity | Excite-O-Meter**
 
-Table of Contents
+*Quick links*
 
-- [- Advanced configurations](#--advanced-configurations)
-- [Requirements](#requirements)
-- [Folder Structure](#folder-structure)
-- [Including Excite-O-Meter in your XR project from Unity Editor](#including-excite-o-meter-in-your-xr-project-from-unity-editor)
+- [**Example Unity | Excite-O-Meter**](#example-unity--excite-o-meter)
+  - [- Advanced configurations](#--advanced-configurations)
+- [Setup a compatible Unity project](#setup-a-compatible-unity-project)
+  - [Requirements](#requirements)
+  - [Folder Structure](#folder-structure)
+- [Including the Excite-O-Meter](#including-the-excite-o-meter)
   - [UI: Online Recorder](#ui-online-recorder)
   - [UI: Offline Analysis](#ui-offline-analysis)
   - [Accessing Excite-O-Meter Logs](#accessing-excite-o-meter-logs)
+  - [Build your application](#build-your-application)
   - [Advanced configurations](#advanced-configurations)
 ---
 
+# Setup a compatible Unity project
 
 ## Requirements
 
@@ -47,7 +51,7 @@ Assets
 └─── ...
 ```
 
-## Including Excite-O-Meter in your XR project from Unity Editor
+# Including the Excite-O-Meter
 
 1. Drag and drop both prefabs `ExciteOMeter_Manager` and `ExciteOMeter_UI_OnlineAnalysis` to the ROOT of your hierarchy. Root is needed because this objects are not destroyed between scene, in case your application runs over multiple scenes.
 1. Open your *Build Settings* and add the scene `ExciteOMeter_OfflineAnalysis` the panel *Scenes in Build*. This is the scene that allows to conduct data visualization.
@@ -57,7 +61,7 @@ inside the XR scene as a World Space Canvas, add the prefab `EoM_BiofeedbackWorl
 
 If you don't have access to the physiological sensor, but still want to test all the functionality of the Excite-O-Meter, you can drag and drop the prefab `EoM_SignalEmulator` to your hierarchy and it will simulate random data from the sensor.
 
-### UI: Online Recorder
+## UI: Online Recorder
 
 The user interface of the online recorder looks like the image below. Each of the numbered components refer to:
 
@@ -72,7 +76,7 @@ The user interface of the online recorder looks like the image below. Each of th
 
 <img src="./docsimgs/OnlineAnalysisGuiExplanation.png" width="100%">
 
-### UI: Offline Analysis
+## UI: Offline Analysis
 
 The user interface of the offline analyzer looks like the image below. Each of the numbered components refer to:
 
@@ -88,13 +92,19 @@ The user interface of the offline analyzer looks like the image below. Each of t
 <img src="./docsimgs/OfflineAnalysisGuiExplanation.png" width="100%">
 
 
-### Accessing Excite-O-Meter Logs
+## Accessing Excite-O-Meter Logs
 
 The recorded sessions are stored in the folder named `LogFiles_ExciteOMeter`. If the sessions are recorded from the *Unity Editor*, this folder is located at the same level than `Application.dataPath` (usually same level than `Assets`). In case the recordings are created after *Building* your application, this folder is located at the same level than your executable file (`.exe` on Windows).
 
 Each folder contains a `.json` file used for offline data visualization and multiple `.csv` files with the raw data that was collected. These files can be used later for offline analysis in other platforms like Python, R, Excel, etc.
 
-### Advanced configurations
+
+## Build your application
+
+Before building your application, delete the file `StreamingAsets/config.json` to generate a new configuration file the first time that the application is executed in the final build.
+Every recorded session is inside the main folder named `LogFiles_ExciteOMeter`, found at the same level than your main `.exe` file.
+
+## Advanced configurations
 
 1. **Screenshots:**
 By default the Excite-O-Meter will take a screenshot of the scene every time that a marker is added. In addition, you can activate the checkbox that takes screenshots every 15 seconds periodically. Further personalization is done in the file `config.json` inside `StreamingAssets`.
@@ -111,4 +121,4 @@ The file `config.json` inside the `StreamingAssets` contains a key called `featu
 - *sampleBufferLength: int* - For sample-based: Number of samples to reach before calculations.
 - *overlapSamplesLength: int* - For sample-based: Number of samples to keep between subsequent calculations (integer lower than sampleBufferLength)
 - *offsetSamplesInTimestamp: int* - For sample-based: Controls time-offset of the feature calculation. If 0, the feature calculation corresponds to the last collected timestamp. If 3, it will be assigned the timestamp of the sample  T-3.
-- **EXAMPLES:** To calculate a time-based feature that updates the first time every 10 seconds, and every second afterwards, the first two values are `10, 0.9`; respectively. To calculate a sample-based feature of buffer 10, updated every new sample, and corresponding to a window `[t-6,t+3]`. The last three features will be `10, 9, 3`; respectively.
+  - **EXAMPLES:** To calculate a time-based feature that updates the first time every 10 seconds, and every second afterwards, the first two values are `10, 0.9`; respectively. To calculate a sample-based feature of buffer 10, updated every new sample, and corresponding to a window `[t-6,t+3]`. The last three features will be `10, 9, 3`; respectively.
