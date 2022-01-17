@@ -2,16 +2,15 @@
 
 *Table of Contents*
 
-- [Excite-O-Meter | Unity plugin](#excite-o-meter--unity-plugin)
-  - [Including Excite-O-Meter in your XR project from Unity Editor](#including-excite-o-meter-in-your-xr-project-from-unity-editor)
-    - [UI: Online Recorder <a name="app2a"></a>](#ui-online-recorder-)
-    - [UI: Offline Analysis <a name="app2b"></a>](#ui-offline-analysis-)
-    - [Accessing Excite-O-Meter Logs](#accessing-excite-o-meter-logs)
-    - [Advanced configurations](#advanced-configurations)
-- [Scientific Disclaimer <a name="disclaimer"></a>](#scientific-disclaimer-)
-  - [Excitement Metric](#excitement-metric)
----
+- [Description](#description)
+- [Configuration](#configuration)
+  - [Dependencies](#dependencies)
+  - [Setup external sensors](#setup-external-sensors)
+  - [Import the package into Unity](#import-the-package-into-unity)
+  - [Example scenario](#example-scenario)
+- [Scientific disclaimer](#scientific-disclaimer)
 
+---
 
 ## Description
 
@@ -63,116 +62,7 @@ The last version of the example scene was tested on:
 - Using the New Unity [Input System v1.0.2](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/index.html).
 - Project configured as standalone, and using OpenXR as plug-in provider.
 
-
----
-
-
-# Excite-O-Meter | Unity plugin
-
-The main plugin is found as a *.unitypackage* from the Excite-O-Meter [website](http://exciteometer.eu/)
-
-**Requirements:**
-
-- Developed and tested in Unity 2019.4
-- Install *Unity UI Extensions* (tested with v2.2.2) official download from: [https://bitbucket.org/UnityUIExtensions/unity-ui-extensions/wiki/Downloads](https://bitbucket.org/UnityUIExtensions/unity-ui-extensions/wiki/Downloads)
-- Install *TextMesh Pro* (tested with v2.0.1). 
-
-![TMPro](./docsimgs/)
-
-**Folder Structure:**
-
-Once the package is imported in Unity, the Excite-O-Meter folder structure looks like the one below.
-
-```
-Assets
-│   ...
-│
-└───ExciteOMeter
-│   │
-│   └───EoM
-│   │   └─── ... // Internal EoM functionality
-│   └───Prefabs
-│   │   └─── EoM_BiofeedbackWorldSpace
-│   │   └─── EoM_SignalEmulator
-│   │   └─── ExciteOMeter_Manager
-│   │   └─── ExciteOMeter_UI_OnlineAnalysis
-│   └───Scenes
-│   │   └─── ExciteOMeter_Demo
-│   │   └─── ExciteOMeter_OfflineAnalysis
-│   └─── EoM_UserManual.md
-│   └─── EoM_UserManual.pdf
-└─── ...
-```
-
-
-
-## Including Excite-O-Meter in your XR project from Unity Editor
-
-1. Drag and drop both prefabs `ExciteOMeter_Manager` and `ExciteOMeter_UI_OnlineAnalysis` to the ROOT of your hierarchy. Root is needed because this objects are not destroyed between scene, in case your application runs over multiple scenes.
-1. Open your *Build Settings* and add the scene `ExciteOMeter_OfflineAnalysis` the panel *Scenes in Build*. This is the scene that allows to conduct data visualization.
-
-If you want to provide biofeedback, i.e. allow users to see the physiological signals inside the XR scene as a World Space Canvas, add the prefab `EoM_BiofeedbackWorldSpace` to your scene and it will automatically show the status connection and time series with the last 30 samples of data.
-
-If you don't have access to the physiological sensor, but still want to test all the functionality of the Excite-O-Meter, you can drag and drop the prefab `EoM_SignalEmulator` to your hierarchy and it will simulate random data from the sensor.
-
-### UI: Online Recorder <a name="app2a"></a>
-
-The user interface of the online recorder looks like the image below. Each of the numbered components refer to:
-
-1. *Open offline analysis:* Stops the current recording and opens the scene that allows offline data visualization (described in the next section).
-1. *Incoming Signals:* Allows to visualize whether the physiological signals are received or not. Each signal has a color indicating connection status (green or red), the last received value and the plot of the signal.
-1. *Signal problem warning:* It is displayed when a connection is dropped. If this message appears check your Android phone or Win10 app to guarantee that it is awake and sending data.
-1. *Session information:* Allows to define a name of a session, define whether the session should take periodic screenshots of the scene, and a button to start or stop the session recording.
-1. *Markers:* Allow the addition of contextual information that associates a timestamp with a specific event. Write a text in the input field to specify a message and click in the '+' button to add it. Quick markers are used to add markers with one click.
-1. *Markers visualizer:* All the markers that are defined in the current session are displayed sequentially in this area. The markers will restart whenever the session is stopped.
-1. *Biofeedback Panel:* Example of the GameObject that allows signal visualization inside the Unity scene.
-1. *Scene:* Example Objects that compose your XR environment.
-
-<img src="D:\Ludwig\Empresas\GIT-repos\XR4ALL\excite-o-meter\docs/imgs/EoM_Online_UI.jpg" width="100%">
-
-### UI: Offline Analysis <a name="app2b"></a>
-
-The user interface of the offline analyzer looks like the image below. Each of the numbered components refer to:
-
-1. *Session:* List of available sessions recorded in the disk. Each session corresponds to a folder inside the Excite-O-Meter logs folder (described below).
-1. *Excite-O-Meter level:* Visualization of the Excite-O-Meter value calculated during the recorded session. The image shows one color per loaded session, up to three sessions could be loaded simultaneously.
-1. *Timeline:* Dragging the green square horizontally shows the instantaneous values of the signal. If screenshots are available, it will update the image to the closest screenshot to the left of the timeline marker.
-1. *Signals selection:* The right panel allows to choose specific signals to visualize from each session. It includes: Heart rate, R-R interval, RMSSD, SDNN and manual markers.
-1. *Signals visualizer:* Area where the selected signals will be visualized on a stacked layout. You can delete a specific signal from the 'X' in the left side of the panel.
-1. *Screenshot Visualizer*: If the session contains screenshots, a square with the closest screenshot to the timeline marker will be displayed, the right hand shows the Excite-O-Meter level for each of the sessions (coded by color).
-1. *Average Excite-O-Meter level*: Shows the average of the Excite-O-Meter level at the timestamp specified in the timeline.
-1. *Back to main app:* This button closes the offline analysis and returns to the scene from where it was called, i.e. the XR scene.
-
-<img src="D:\Ludwig\Empresas\GIT-repos\XR4ALL\excite-o-meter\docs/imgs/EoM_Online_UI_2.jpg" width="100%">
-
-
-### Accessing Excite-O-Meter Logs
-
-The recorded sessions are stored in the folder named `LogFiles_ExciteOMeter`. If the sessions are recorded from the *Unity Editor*, this folder is located at the same level than `Application.dataPath` (usually same level than `Assets`). In case the recordings are created after *Building* your application, this folder is located at the same level than your executable file (`.exe` on Windows).
-
-Each folder contains a `.json` file used for offline data visualization and multiple `.csv` files with the raw data that was collected. These files can be used later for offline analysis in other platforms like Python, R, Excel, etc.
-
-### Advanced configurations
-
-1. **Screenshots:**
-By default the Excite-O-Meter will take a screenshot of the scene every time that a marker is added. In addition, you can activate the checkbox that takes screenshots every 15 seconds periodically. Further personalization is done in the file `config.json` inside `StreamingAssets`.
-1. **Adding custom events:**
-If you want to execute your own scripts when a session starts or finishes from the online UI. You can place your events on the inspector of the GameObject `ExciteOMeter_Manager`. This is useful, for instance, when you want to trigger specific actions synchronized with data logging.
-1. **Adding quick markers:** 
-The quick markers are used to create custom markers on the timeline with one click. To add your own markers, you can look for the GameObject `QUICK_MARKERS_ExciteOMeter` in the hierarchy and duplicate the prefab `QuickMarker`. In the inspector of each quick marker, the component `QuickMarkerEoM` allows you to change the message and a custom event that will be executed when the specific marker is triggered.
-1. **Changing data processing parameters:** 
-The file `config.json` inside the `StreamingAssets` contains a key called `featureSettings` with basic configuration of the Excite-O-Meter that allows to change the parameters of the real-time processing workflow **even after building your application**.
-
-- *isSampleBased: true/false* - Whether the feature is calculated when a number of samples are reached (true) or periodically every time (false)
-- *windowTime: float* - For time-based: Time interval in seconds that will be used as buffer to calculate the feature.
-- *overlapPercentageTime: float* - For time-based: Percentage of overlap between subsequent calculations (between 0.0 and 0.95)
-- *sampleBufferLength: int* - For sample-based: Number of samples to reach before calculations.
-- *overlapSamplesLength: int* - For sample-based: Number of samples to keep between subsequent calculations (integer lower than sampleBufferLength)
-- *offsetSamplesInTimestamp: int* - For sample-based: Controls time-offset of the feature calculation. If 0, the feature calculation corresponds to the last collected timestamp. If 3, it will be assigned the timestamp of the sample  T-3.
-- **EXAMPLES:** To calculate a time-based feature that updates the first time every 10 seconds, and every second afterwards, the first two values are `10, 0.9`; respectively. To calculate a sample-based feature of buffer 10, updated every new sample, and corresponding to a window `[t-6,t+3]`. The last three features will be `10, 9, 3`; respectively.
-
-
-# Scientific Disclaimer <a name="disclaimer"></a>
+## Scientific disclaimer
 
 The estimation of the Excite-O-Meter level shown by this application is a result of the first phase of scientific validation, which most likely will change in future development iterations. It does not represent an objective measure for medical or psychological trials.
 
@@ -182,16 +72,3 @@ The calculation of cardiac features is developed as defined on the folowing pape
 
 - **RMSSD:** The root mean square of successive differences between normal heartbeats (RMSSD) is obtained by first calculating each successive time difference between heartbeats in ms. Then, each of the values is squared and the result is averaged before the square root of the total is obtained.
 - **SDNN:** The standard deviation of the IBI of normal sinus beats (SDNN) is measured in ms. The related standard deviation of successive RR interval differences (SDSD) only represents short-term variability.
-
-
-
-
-
-## Excitement Metric
-
-to calculate the level of 'excitement' that your application might be causing on participants. It is particularly suitable for researchers that conduct scientific experiments in XR with Unity but also for hobbists that are developing their own games and want to measure their own reaction to the game. The main **functionalities** that the Excite-O-Meter provides are:
-
-- Scientifically validated set of metrics to estimate Excite-O-Meter level
-- Easy integration of the tool by adding two prefabs to an existing Unity project.
-- Instant access to real-time physiological data collection and offline data visualization module.
-- Organize each participant in different sessions that are visualized in the Excite-O-Meter offline analysis tool, or get the CSV files with the data for your own data analysis.
