@@ -47,7 +47,7 @@ The `EoM` may be used without external wearable sensors. However, the tool's mai
 
 **Note:** *The description below is a summary of the complete step-by-step [user manual available in this link](./docs/1_UserManual.md).*
 
-The `EoM` includes two parts: 1) The (`Excite-O-Meter|Devices`), a compiled software (versions for Android and Win10) that interfaces the physical sensor with Unity. 2) The `Eom` Unity package that integrates the functionalities in your custom standalone Unity project.
+The `EoM` includes two parts: 1) The (`Excite-O-Meter|Devices`), a compiled software (versions for Android and Win10) that interfaces the physical sensor with Unity. 2) The `EoM` Unity package that integrates the functionalities in your custom standalone Unity project.
 
 ## Unity prerequisites
 
@@ -110,7 +110,7 @@ The project's website (<http://exciteometer.eu/>) contains additional informatio
 ## Credits
 
 * The project is currently maintained by [Luis Quintero](http://luiseduve.github.io/), part of his PhD project at the [Data Science Group](http://datascience.dsv.su.se/) at Stockholm University, Sweden.
-* The project leader was [Michael Gaebler](https://www.michaelgaebler.com/), who conceptualized the project and led the work from the first publication, as found in the branch [`release_v1.0.1`](https://github.com/luiseduve/exciteometer/tree/release_v1.0.1).
+* The project leader was [Michael Gaebler](https://www.michaelgaebler.com/), who conceptualized the project and led the work from the first publication, as found in the branch [`release_v1.0.1`](https://github.com/luiseduve/exciteometer/tree/release_v1.0.1). [John Muñoz](http://johnhci.com/) and [Jeroen de Mooij](https://nl.linkedin.com/in/jeroendemooij) also heavily contributed in the conceptualization and UI development of the EoM, respectively.
 * *Acknowledgements:*
 * The authors wish to thank Anna Francová and Jessica Gärtner for their support in the empirical evaluation of the first version of the `EoM`; as well as Johanne Tromp, Felix Klotzsche, Mert Akbal, and Alexander Masurovsky for helping in the conceptualization of the project on its first stage.
 * This project received funding from the European Union’s Horizon 2020 research and innovation programme through the XR4ALL project with grant agreement N° 825545.

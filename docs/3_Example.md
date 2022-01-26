@@ -6,6 +6,7 @@
   - [- Advanced configurations](#--advanced-configurations)
 - [Setup a compatible Unity project](#setup-a-compatible-unity-project)
   - [Requirements](#requirements)
+- [`This document is still work-in-progress from this point!!!`](#this-document-is-still-work-in-progress-from-this-point)
   - [Folder Structure](#folder-structure)
 - [Including the Excite-O-Meter](#including-the-excite-o-meter)
   - [UI: Online Recorder](#ui-online-recorder)
@@ -25,6 +26,8 @@ The example requires that you
 - Install *TextMesh Pro* (tested with v2.0.1). If your project does not include it yet, Unity will show a prompt message as shown below when you drag and drop the prefab containing the UI of the Excite-O-Meter.
     
 <img src="./docsimgs/Unity_TMPro.jpg" width="60%">
+
+# `This document is still work-in-progress from this point!!!`
 
 ## Folder Structure
 
