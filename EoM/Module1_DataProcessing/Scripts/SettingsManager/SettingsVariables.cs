@@ -22,7 +22,7 @@ public class SettingsVariables
         public float screenshotsPeriodSecs = 20.0f;
 
         public bool recordMovementData = true;
-        public int recordMovementFrequency = 12;
+        public int recordMovementFrequency = 10;
     }
 
     [System.Serializable]

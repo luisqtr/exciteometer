@@ -64,7 +64,7 @@ $ git submodule update --init
 
 ## Example scenario
 
-The package also includes an example scene `Scenes/Example_withURP_NewInputSystem.unity`. The [description of the example](./docs/3_Example.md) guides your through the use of each of the existing Unity prefabs, their functionality, and some minor customizations that you can do to adapt the `EoM` to your specific needs.
+The package also includes an example scene `Scenes/Example_withURP_NewInputSystem.unity`. The [description of the example](./3_Example.md) guides your through the use of each of the existing Unity prefabs, their functionality, and some minor customizations that you can do to adapt the `EoM` to your specific needs.
 
 The last version of the example scene was tested on:
 - Unity 2020.3.19f1

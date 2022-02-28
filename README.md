@@ -47,7 +47,9 @@ The `EoM` may be used without external wearable sensors. However, the tool's mai
 
 **Note:** *The description below is a summary of the complete step-by-step [user manual available in this link](./docs/1_UserManual.md).*
 
-The `EoM` includes two parts: 1) The (`Excite-O-Meter|Devices`), a compiled software (versions for Android and Win10) that interfaces the physical sensor with Unity. 2) The `EoM` Unity package that integrates the functionalities in your custom standalone Unity project.
+The `EoM` includes two parts: 
+1) The (`Excite-O-Meter|Devices`), a compiled software (versions for Android and Win10) that interfaces the physical sensor with Unity. 
+2) The `EoM` Unity package that integrates the functionalities in your custom standalone Unity project.
 
 ## Unity prerequisites
 
@@ -70,7 +72,7 @@ The package includes an example scene `Scenes/Example_withURP_NewInputSystem.uni
 The latest version of the example scene used the following Unity configuration:
 - Unity version 2020.3.19f1
 - Universal Rendering Pipeline - [URP v10.6.0](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@10.6/manual/)
-- Build as standalone (not mobile)
+- Build as standalone VR (not for mobile VR like Meta Quest v1/v2)
 - OpenXR as the XR plug-in provider.
 - Utilizing the new Unity Input System [Input System v1.0.2](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/index.html).
 

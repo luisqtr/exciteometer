@@ -607,6 +607,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee9faf4706aa4d24a94607f625d6bf07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerLeftEvent: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  triggerRightEvent: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
   valueVisualizer: {fileID: 1994635513}
   MAX_VALUE: 2
   colorLow: {r: 0, g: 1, b: 0, a: 1}
