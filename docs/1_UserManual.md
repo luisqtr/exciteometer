@@ -26,7 +26,7 @@ The Excite-O-Meter `EoM` is a software framework that allows developers to integ
 
 ![architecture](./images/eom_architecture.png)
 
-The whole system includes the use of **two** different types of applications that can be downloaded from the [latest release branch](https://github.com/luiseduve/exciteometer/releases/latest):
+The whole system includes the use of **two** different types of applications that can be downloaded from the [latest release branch](https://github.com/luisqtr/exciteometer/releases/latest):
 
 1. **Excite-O-Meter|Devices:** is the communication interface for the physiological sensor, collects data via Bluetooth, and streams them to Unity. It is available as an independent *Win10 UWP app* or an *.apk* for Android.
 2. **`EoM` Unity package** includes in your project all the described functionalities with just few clicks.
@@ -57,10 +57,10 @@ There are two ways to include the `EoM` in your existing Unity project depending
 1) If you are already using Git as a version control system for your Unity project. Access your `Assets` directory from the terminal, and add the `EoM` as a submodule:
 ```bash
 $ cd Assets/
-$ git submodule add https://github.com/luiseduve/exciteometer.git
+$ git submodule add https://github.com/luisqtr/exciteometer.git
 $ git submodule update --init
 ```
-1) If your Unity project is not using Git, download the `.unitypackage` from the [latest release branch](https://github.com/luiseduve/exciteometer/releases/latest).
+1) If your Unity project is not using Git, download the `.unitypackage` from the [latest release branch](https://github.com/luisqtr/exciteometer/releases/latest).
 
 ## Example scenario
 

@@ -59,7 +59,7 @@ The application is compatible with Android v6.0 or greater, API>=23.
 
 ## Installation
 
-1. Send the `.apk` to the mobile phone either connecting it to the computer or direct download from the [latest release branch](https://github.com/luiseduve/exciteometer/releases/latest) or the project's [website](http://exciteometer.eu/).
+1. Send the `.apk` to the mobile phone either connecting it to the computer or direct download from the [latest release branch](https://github.com/luisqtr/exciteometer/releases/latest) or the project's [website](http://exciteometer.eu/).
 2. Search in the **Settings** of the phone the option to allow unknown sources ([help](https://www.androidcentral.com/unknown-sources)) from either the file explorer or Google Chrome (depending the app used to download the APK).
 3. If the pop-up with Google Play Protect appears, click on **Install anyway**. This prompt is likely to be shown because physiological data is sent through the network silently.
 4. During execution, the app requires the following permissions: 
@@ -83,14 +83,14 @@ Requires *Minimum Windows 10, version 1803 (10.0; Build 171734)*
 
 ## Installation
 
-1. Extract the .zip file of the Excite-O-Meter-Devices for Win10 from the [latest release branch](https://github.com/luiseduve/exciteometer/releases/latest) or from the project's [website](http://exciteometer.eu/)
+1. Extract the .zip file of the Excite-O-Meter-Devices for Win10 from the [latest release branch](https://github.com/luisqtr/exciteometer/releases/latest) or from the project's [website](http://exciteometer.eu/)
 
 2. Right click the file `Add-AppDevPackage.ps1` and click on `Run with Powershell`. A new Powershell console will appear asking to proceed: Press `Y` to approve.
 
 <img src="./docsimgs/install_win10_1.png" width="80%">
 
 3. If the computer is not setup as developer or the certificate is not trusted, it will prompt a second Powershell console asking for permission to execute these steps, as shown next, press `Y` to accept. If these two conditions are met beforehand, then the installation of the package should start immediately. 
-**NOTE:** *This step also verifies that the Windows developer's certificate is still valid. The certificate expires 1-year after compilation. If there are problems with this certificate when installing, please post an issue on GitHub and we will generate an new build with the updated certificate. Read more info in [issue #3](https://github.com/luiseduve/exciteometer/issues/3)*.
+**NOTE:** *This step also verifies that the Windows developer's certificate is still valid. The certificate expires 1-year after compilation. If there are problems with this certificate when installing, please post an issue on GitHub and we will generate an new build with the updated certificate. Read more info in [issue #3](https://github.com/luisqtr/exciteometer/issues/3)*.
 
 <img src="./docsimgs/install_win10_2.png" width="80%">
 

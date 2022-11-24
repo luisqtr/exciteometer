@@ -23,8 +23,8 @@ We use GitHub to host the code, track issues, request features, and accept pull 
 ## Any contributions you make will be under the GNU GPL v3.0 license
 In short, when you submit code changes, your submissions are understood to be under the same [GNU GPL v3.0](https://choosealicense.com/licenses/gpl-3.0/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-## Report bugs using GitHub's [issues](https://github.com/luiseduve/exciteometer/issues)
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/luiseduve/exciteometer/issues/new/choose); it's that easy!
+## Report bugs using GitHub's [issues](https://github.com/luisqtr/exciteometer/issues)
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/luisqtr/exciteometer/issues/new/choose); it's that easy!
 
 ## Write bug reports with detail, background, and sample code
 Good online examples about [how to write useful github issues](https://upthemes.com/blog/2014/02/writing-useful-github-issues/), and [another example from Craig Hockenberry](http://www.openradar.me/11905408). **Great Bug Reports** tend to have:
