@@ -59,7 +59,8 @@ The `EoM` package already ships the library dependencies [LSL](https://github.co
 
 ## Measure bodily data from wearables
 
-To collect data from external sensors, it is required to use the `Excite-O-Meter|Devices`, which can be downloaded from the [latest release branch](https://github.com/luisqtr/exciteometer/releases/latest). Read about installation and setup in [this document](./docs/2_SetupDevices.md), this app acts as a middleware software that interfaces wearable sensors with Unity. 
+Read about installation and setup in [this document](./docs/2_SetupDevices.md), the middleware software interfaces the Polar H10 sensor with Unity. 
+The `Excite-O-Meter|Devices` can be downloaded from the [latest release branch](https://github.com/luisqtr/exciteometer/releases/latest). 
 
 ## Importing package in Unity
 
@@ -69,14 +70,7 @@ If you prefer to clone the git in your own project, either to obtain the latest 
 
 ## Example
 
-The package includes an example scene `Scenes/Example_withURP_NewInputSystem.unity`. It shows how you can integrate the `EoM` in an existing Unity project. Read more details in the [description of the example](./docs/3_Example.md).
-
-The latest version of the example scene used the following Unity configuration:
-- Unity version 2020.3.19f1
-- Universal Rendering Pipeline - [URP v10.6.0](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@10.6/manual/)
-- Build as standalone VR (not for mobile VR like Meta Quest v1/v2)
-- OpenXR as the XR plug-in provider.
-- Utilizing the new Unity Input System [Input System v1.0.2](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/index.html).
+[A description of the example is available in this link](./docs/3_Example.md). The example scene `Scenes/Example_withURP_NewInputSystem.unity` shows the integration of the `EoM` in an existing Unity project.
 
 
 ## Cite the research paper
