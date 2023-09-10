@@ -6,10 +6,10 @@
 - [About `Excite-O-Meter|Devices`](#about-excite-o-meterdevices)
   - [Wearing the Sensor](#wearing-the-sensor)
   - [Collecting data](#collecting-data)
-- [Excite-O-Meter|Devices > for Android](#excite-o-meterdevices--for-android)
+- [Excite-O-Meter|Devices \> for Android](#excite-o-meterdevices--for-android)
   - [Installation](#installation)
   - [Execution](#execution)
-- [Excite-O-Meter|Devices > for Windows 10 UWP](#excite-o-meterdevices--for-windows-10-uwp)
+- [Excite-O-Meter|Devices \> for Windows 10 UWP](#excite-o-meterdevices--for-windows-10-uwp)
   - [Installation](#installation-1)
   - [Execution](#execution-1)
 - [Continue with installation in Unity](#continue-with-installation-in-unity)
@@ -46,8 +46,8 @@ These set of applications are in charge of connecting to the physiological senso
 Some important notes about communication between `Excite-O-Meter|Devices` and Unity are:
 
 - The device that runs `Excite-O-Meter|Devices` to receive data from the sensor **must** be in the same local network (WiFi, LAN) than the device that runs your XR application in Unity. Regardless if you run the Android or Win10 version.
-- Use the **Android APK** if you already have easy access to an Android phone configured in developer mode. Beware that the you need keep the mobile screen awake (e.g., touching the screen) while the data collection is happening (*for this reason we recommend running Win10 UWP even if it requires two PCs*).
-- To use the **Win10 UWP**, the `Excite-O-Meter|Devices` app **MUST run on a different PC** than the computer running the Unity Editor or compiled `.exe` application, (connected via LAN). This problem is caused by a loopback restriction of UWP apps. There are [posts in StackOverflow](https://stackoverflow.com/questions/33259763/uwp-enable-local-network-loopback) suggesting a workaround to avoid the restriction, but they haven't been tested yet.
+- Use the **Android APK** if you already have easy access to an Android phone configured in developer mode. Beware that the you need keep the mobile screen awake (e.g., touching the screen) while the data collection is happening (*for this reason we recommend running Win10 UWP*).
+- To use the **Win10 UWP**, the `Excite-O-Meter|Devices` has a [loopback restriction in UWP apps](https://stackoverflow.com/questions/33259763/uwp-enable-local-network-loopback) that complicates data streaming on the same PC. You can use the [PowerShell script described here](https://github.com/luisqtr/exciteometer-devices-UWP#creating-an-exception-for-the-loopback-restriction) to create an exemption and allow streaming and receiving LSL data from the same device.
 - When **building your app in Unity** as standalone. The first time you run the `.exe`, it will likely prompt a Windows Security alert (*as in the image below*) requesting access to the network. **You must approve allow access**. Since the `Excite-O-Meter|Devices` internally uses socket communication to send data between the sensor and Unity, it needs access to the network. If you do not approve this message, your application will not be able to receive data in your Unity application. This issue can be fixed creating an explicit exception for incoming messages in the *Windows Defender Firewall*.
 
 <img src="./docsimgs/exampleFirewallAlert.png" width="50%">
@@ -81,9 +81,13 @@ The application looks like the image below. It allows to send either HR+RR data 
 
 Requires *Minimum Windows 10, version 1803 (10.0; Build 171734)* 
 
+Download from Windows Store: https://www.microsoft.com/store/apps/9PFMNFQJB99Q
+
+Otherwise follow the steps below to install the application manually.
+
 ## Installation
 
-1. Extract the .zip file of the Excite-O-Meter-Devices for Win10 from the [latest release branch](https://github.com/luisqtr/exciteometer/releases/latest) or from the project's [website](http://exciteometer.eu/)
+1. Extract the .zip file of the Excite-O-Meter-Devices for Win10 from the [latest release branch](https://github.com/luisqtr/exciteometer/releases/latest)
 
 2. Right click the file `Add-AppDevPackage.ps1` and click on `Run with Powershell`. A new Powershell console will appear asking to proceed: Press `Y` to approve.
 

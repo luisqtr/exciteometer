@@ -24,7 +24,6 @@
 - [More information](#more-information)
   - [Project's website](#projects-website)
   - [More research papers about the `Excite-O-Meter`](#more-research-papers-about-the-excite-o-meter)
-  - [Credits](#credits)
 
 ---
 
@@ -49,7 +48,8 @@ The `EoM` may be used without external wearable sensors. However, the tool's mai
 
 The `EoM` includes two parts: 
 1) The (`Excite-O-Meter|Devices`), a compiled software (versions for Android and Win10) that interfaces the physical sensor with Unity.
-  - The code to compile the Android application that transforms Bluetooth stream into LSL is available in this other: <https://github.com/luisqtr/exciteometer-devices-android/>
+  - The code to compile the Android application that transforms Bluetooth stream into LSL is available in this repo: <https://github.com/luisqtr/exciteometer-devices-android/>
+  - The code to compile the Windows UWP application that transforms Bluetooth stream into LSL is available in this repo: <https://github.com/luisqtr/exciteometer-devices-UWP/>
 2) The `EoM` Unity package that integrates the functionalities in your custom standalone Unity project.
 3) The script `EoM_DataReceiver.cs` can be attached to any existing scene to read the values from physiological data and custom markers and be processed as desired.
 
@@ -95,6 +95,7 @@ If the `EoM` is useful for your research, please consider citing the following p
     year = {2021}
 }
 ```
+
 **Scientific disclaimer:** The `EoM` includes an algorithm that estimates *'excitement level'* from cardiac data. It MUST be considered considered on early stages and not as an objective scientifically validated measure. Please read the full disclaimer at the end of [this document](./docs/1_UserManual.md#).
 
 # How to contribute?
@@ -109,13 +110,10 @@ The project's website (<http://exciteometer.eu/>) contains additional informatio
 
 ## More research papers about the `Excite-O-Meter`
 
-> Soon!
-
-## Credits
-
 * The project is currently maintained by [Luis Quintero](https://luisqtr.com/), part of his PhD project at the [Data Science Group](http://datascience.dsv.su.se/) at Stockholm University, Sweden.
 * The project leader was [Michael Gaebler](https://www.michaelgaebler.com/), who conceptualized the project and led the work from the first publication, as found in the branch [`release_v1.0.1`](https://github.com/luisqtr/exciteometer/tree/release_v1.0.1). [John Muñoz](http://johnhci.com/) and [Jeroen de Mooij](https://nl.linkedin.com/in/jeroendemooij) also heavily contributed in the conceptualization and UI development of the EoM, respectively.
 * *Acknowledgements:*
 * The authors wish to thank Anna Francová and Jessica Gärtner for their support in the empirical evaluation of the first version of the `EoM`; as well as Johanne Tromp, Felix Klotzsche, Mert Akbal, and Alexander Masurovsky for helping in the conceptualization of the project on its first stage.
 * This project received funding from the European Union’s Horizon 2020 research and innovation programme through the XR4ALL project with grant agreement N° 825545.
 * Thanks to all contributors from other libraries: [LSL](https://github.com/sccn/labstreaminglayer), [UI Extensions](https://bitbucket.org/UnityUIExtensions/unity-ui-extensions/).
+

@@ -3,7 +3,6 @@
 *Quick links*
 
 - [**Example Unity | Excite-O-Meter**](#example-unity--excite-o-meter)
-  - [- Advanced configurations](#--advanced-configurations)
 - [Setup a compatible Unity project](#setup-a-compatible-unity-project)
   - [Requirements](#requirements)
   - [Folder Structure](#folder-structure)
@@ -23,8 +22,8 @@
 
 The example requires that you
 
-- Developed and tested in Unity 2020.3.19f1
-- Install *TextMesh Pro* (tested with v2.0.1). If your project does not include it yet, Unity will show a prompt message as shown below when you drag and drop the prefab containing the UI of the Excite-O-Meter.
+- Developed and tested in Unity 2021.3.17f1
+- Install *TextMesh Pro* (tested with v3.0.6). If your project does not include it yet, Unity will show a prompt message as shown below when you drag and drop the prefab containing the UI of the Excite-O-Meter.
     
 <img src="./docsimgs/Unity_TMPro.jpg" width="60%">
 

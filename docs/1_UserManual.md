@@ -48,7 +48,9 @@ The `EoM` package **already contains** modified versions of two prerequired libr
 
 To use the external wearable, it is necessary to download the middleware software called `Excite-O-Meter | Devices`. It works as a bridge between the communication protocol from the device (e.g., Bluetooth Low Energy) and the LSL data captured in Unity.
 
-The `Excite-O-Meter | Devices` is available for Windows or Android. Please follow the instructions [available in this document](./2_SetupDevices.md) if you want to try the `EoM` with real heart activity data in Unity.
+The `Excite-O-Meter | Devices` is available for Windows or Android. 
+
+> [Instructions available in this document](./2_SetupDevices.md) to capture heart activity data from the Polar H10 chest-strap into Unity.
 
 ## Import the `EoM` Unity package
 
@@ -67,10 +69,11 @@ $ git submodule update --init
 The package also includes an example scene `Scenes/Example_withURP_NewInputSystem.unity`. The [description of the example](./3_Example.md) guides your through the use of each of the existing Unity prefabs, their functionality, and some minor customizations that you can do to adapt the `EoM` to your specific needs.
 
 The last version of the example scene was tested on:
-- Unity 2020.3.19f1
-- Universal Rendering Pipeline - [URP v10.6.0](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@10.6/manual/)
-- Using the New Unity [Input System v1.0.2](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/index.html).
-- Project configured as standalone, and using OpenXR as plug-in provider.
+- Unity 2021.3.17
+- Universal Rendering Pipeline - [URP v12.1.9](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@10.6/manual/)
+- Unity's New [Input System v1.0.2](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/index.html).
+- OpenXR v1.6.0
+- Project configured as standalone (Windows)
 
 # Scientific disclaimer
 
