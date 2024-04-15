@@ -48,6 +48,7 @@ The `EoM` may be used without external wearable sensors. However, the tool's mai
 
 The `EoM` includes two parts: 
 1) The (`Excite-O-Meter|Devices`), a compiled software (versions for Android and Win10) that interfaces the physical sensor with Unity.
+  - Download the Windows Application from the store: https://www.microsoft.com/store/apps/9NW9MSXHTQ5M
   - The code to compile the Android application that transforms Bluetooth stream into LSL is available in this repo: <https://github.com/luisqtr/exciteometer-devices-android/>
   - The code to compile the Windows UWP application that transforms Bluetooth stream into LSL is available in this repo: <https://github.com/luisqtr/exciteometer-devices-UWP/>
 2) The `EoM` Unity package that integrates the functionalities in your custom standalone Unity project.
