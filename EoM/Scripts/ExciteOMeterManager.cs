@@ -38,7 +38,7 @@ namespace ExciteOMeter
             {
                 instance = this;
                 // This object is destroyed only when returninig from EoM offline analysis
-                DontDestroyOnLoad(instance.gameObject);
+                //DontDestroyOnLoad(instance.gameObject);
             }
             else
             {
